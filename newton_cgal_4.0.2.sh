@@ -5,10 +5,9 @@
 #   for use on UTK Newton only
 #
 # Files changed in order to compile:
-#   
+#   None
 ################################################################################
 
-INSTALLDIR="/data/apps"
 APPNAME="cgal"
 VERSION="4.0.2"
 APPDIR="$INSTALLDIR/$APPNAME/$VERSION"

@@ -5,10 +5,9 @@
 #   for use on UTK Newton only
 #
 # Files changed in order to compile:
-#   
+#   None
 ################################################################################
 
-INSTALLDIR="/data/apps"
 APPNAME="neon"
 VERSION="0.30.0"
 APPDIR="$INSTALLDIR/$APPNAME/$VERSION"

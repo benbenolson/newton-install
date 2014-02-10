@@ -5,10 +5,9 @@
 #   for use on UTK Newton only
 #
 # Files changed in order to compile:
-#   
+#   None
 ################################################################################
 
-INSTALLDIR="/data/apps"
 APPNAME="pgi"
 VERSION="13.5"
 APPDIR="$INSTALLDIR/$APPNAME/$VERSION"

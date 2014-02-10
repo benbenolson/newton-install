@@ -5,10 +5,9 @@
 #   for use on UTK Newton only
 #
 # Files changed in order to compile:
-#   
+#   None
 ################################################################################
 
-INSTALLDIR="/data/apps"
 APPNAME="sqlite"
 VERSION="3.7.6.3"
 APPDIR="$INSTALLDIR/$APPNAME/$VERSION"

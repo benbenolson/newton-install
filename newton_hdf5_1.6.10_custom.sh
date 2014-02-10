@@ -1,21 +1,18 @@
 #!/bin/bash
 
 ################################################################################
-# NumPy version 1.7.0 INSTALL SCRIPT
+# HDF5 version 1.6.10 INSTALL SCRIPT
 #   for use on UTK Newton only
 #
 # Files changed in order to compile:
 #   None
 ################################################################################
 
-APPNAME="numpy"
-VERSION="1.7.0"
+APPNAME="hdf5"
+VERSION="1.6.10"
 APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
-module load python/2.7.3
-python setup.py build
-python setup.py install --prefix=$APPDIR
-
-module switch python/2.7.3 python/3.2.1
-python3 setup.py build
-python3 setup.py install --prefix=$APPDIR
+./configure --prefix=$APPDIR --enable-parallel --enable-shared CC=mpicc
+make
+make test
+make install

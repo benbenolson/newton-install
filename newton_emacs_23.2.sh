@@ -8,7 +8,6 @@
 #   
 ################################################################################
 
-INSTALLDIR="/data/apps"
 APPNAME="emacs"
 VERSION="23.2"
 APPDIR="$INSTALLDIR/$APPNAME/$VERSION"

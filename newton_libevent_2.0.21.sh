@@ -5,10 +5,9 @@
 #   for use on UTK Newton only
 #
 # Files changed in order to compile:
-#   
+#   None
 ################################################################################
 
-INSTALLDIR="/data/apps"
 APPNAME="libevent"
 VERSION="2.0.21"
 APPDIR="$INSTALLDIR/$APPNAME/$VERSION"

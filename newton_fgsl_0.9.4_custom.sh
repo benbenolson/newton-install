@@ -1,18 +1,23 @@
 #!/bin/bash
 
 ################################################################################
-# R version 2.15.2 INSTALL SCRIPT
+# FGSL version 0.9.4 INSTALL SCRIPT
 #   for use on UTK Newton only
 #
 # Files changed in order to compile:
-#   None
+#   Deleted parameter "-p" after command "cp" in Makefile
 ################################################################################
 
-APPNAME="r"
-VERSION="2.15.2"
+APPNAME="fgsl"
+VERSION="0.9.4"
 APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
-./configure --prefix=$APPDIR
-make -j 8
-make check
+module load gcc
+module load gsl
+
+./configure --prefix $APPDIR --gsl $INSTALLDIR/gsl/1.15 --bits 64
+cp newton_install/Makefile .
+make
+make test
 make install
+chmod -R 755 $APPDIR

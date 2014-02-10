@@ -1,17 +1,19 @@
-#!/bin/sh -f 
-# Compile Elmer modules and install it
+#!/bin/bash
+
+################################################################################
+# ELMER version 6518 INSTALL SCRIPT
+#   for use on UTK Newton only
 #
-# This script doesn't work as-is. The .so files will not be created
-# successfully unless many of the files are compiled with -fPIC
-# The directories containing files that must be compiled this
-# way are the following: mathlibs/src/arpack/ umfpack/src/umfpack/
-# hutiter/src/ matc/src/ eio/src/ mathlibs/src/lapack/ mathlibs/src/blas/
-# umfpack/src/amd/
+# Files changed in order to compile:
+#   None
+################################################################################
 
-module unload intel-compilers
-module load intel-compilers/2013.1
+APPNAME="elmer"
+VERSION="6518"
+APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
-# replace these with your compilers:
+module switch intel-compilers intel-compilers/2013.1
+
 export CC=icc
 export CXX=icc
 export FC=ifort
@@ -25,10 +27,9 @@ for m in $modules; do
   cd $m
   make clean
   make distclean
-  ./configure --prefix=/data/apps/elmer/6518
+  ./configure --prefix=$APPDIR
   make
   make install
   cd .. 
 done
-
 

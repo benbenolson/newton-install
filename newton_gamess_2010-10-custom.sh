@@ -1,21 +1,23 @@
 #!/bin/bash
 
 ################################################################################
-# NumPy version 1.7.0 INSTALL SCRIPT
+# GAMESS version 2010-10 INSTALL SCRIPT
 #   for use on UTK Newton only
 #
 # Files changed in order to compile:
-#   None
+#   Manually wrote the configuration file "install.info".
 ################################################################################
 
-APPNAME="numpy"
-VERSION="1.7.0"
+APPNAME="gamess"
+VERSION="2010-10"
 APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
-module load python/2.7.3
-python setup.py build
-python setup.py install --prefix=$APPDIR
+module switch openmpi openmpi/1.4.3-gcc-psm
 
-module switch python/2.7.3 python/3.2.1
-python3 setup.py build
-python3 setup.py install --prefix=$APPDIR
+rm gamess.01.x
+
+export GMS_MKL_VERNO="11"
+
+cp newton_install/install.info .
+./compall
+./lked gamess 01

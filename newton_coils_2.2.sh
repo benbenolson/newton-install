@@ -5,15 +5,12 @@
 #   for use on UTK Newton only
 #
 # Files changed in order to compile:
-#   
+#   None
 ################################################################################
 
-INSTALLDIR="/data/apps"
 APPNAME="coils"
 VERSION="2.2"
 APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
-
-module load intel-compilers
 
 icc -O2 -I. -o ncoils-osf ncoils.c read_matrix.c -lm
 mkdir -p $APPDIR

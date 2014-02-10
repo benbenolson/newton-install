@@ -5,18 +5,17 @@
 #   for use on UTK Newton only
 #
 # Files changed in order to compile:
-#   
+#   None
 ################################################################################
 
-INSTALLDIR="/data/apps"
 APPNAME="gcc"
 VERSION="4.8.1"
 APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
-module load intel-compilers
 module load gmp
 module load mpfr
 module load mpc
+
 mkdir build
 cd build
 ../configure --prefix=$APPDIR --with-mpfr=/data/apps/mpfr/3.1.2 --with-gmp=/data/apps/gmp/5.1.1 --with-mpc=/data/apps/mpc/1.0.1 --srcdir=..

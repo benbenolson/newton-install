@@ -1,21 +1,24 @@
 #!/bin/bash
 
 ################################################################################
-# NumPy version 1.7.0 INSTALL SCRIPT
+# GLOBUS TOOLKIT version 5.2.2 INSTALL SCRIPT
 #   for use on UTK Newton only
 #
 # Files changed in order to compile:
 #   None
 ################################################################################
 
-APPNAME="numpy"
-VERSION="1.7.0"
+APPNAME="globus"
+VERSION="5.2.2"
 APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
-module load python/2.7.3
-python setup.py build
-python setup.py install --prefix=$APPDIR
+module load perl
 
-module switch python/2.7.3 python/3.2.1
-python3 setup.py build
-python3 setup.py install --prefix=$APPDIR
+cpan Archive/Tar.pm
+
+which perl
+
+./configure prefix=$APPDIR
+export INC=/data/apps/perl/5.16.2/lib/5.16.2
+make
+make install

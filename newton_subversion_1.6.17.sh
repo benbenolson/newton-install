@@ -5,10 +5,9 @@
 #   for use on UTK Newton only
 #
 # Files changed in order to compile:
-#   
+#   None
 ################################################################################
 
-INSTALLDIR="/data/apps"
 APPNAME="subversion"
 VERSION="1.6.17"
 APPDIR="$INSTALLDIR/$APPNAME/$VERSION"

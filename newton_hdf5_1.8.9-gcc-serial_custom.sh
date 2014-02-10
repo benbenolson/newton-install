@@ -1,21 +1,19 @@
 #!/bin/bash
 
 ################################################################################
-# NumPy version 1.7.0 INSTALL SCRIPT
+# HDF5 version 1.8.9-gcc-serial INSTALL SCRIPT
 #   for use on UTK Newton only
 #
 # Files changed in order to compile:
-#   None
+#   Patched a filename changed with cmake_patch.txt
 ################################################################################
 
-APPNAME="numpy"
-VERSION="1.7.0"
+APPNAME="hdf5"
+VERSION="1.8.9-gcc-serial"
 APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
-module load python/2.7.3
-python setup.py build
-python setup.py install --prefix=$APPDIR
-
-module switch python/2.7.3 python/3.2.1
-python3 setup.py build
-python3 setup.py install --prefix=$APPDIR
+patch -f < cmake_patch.txt
+CC=gcc ./configure --prefix=$APPDIR --disable-parallel --enable-shared
+make
+make test
+make install

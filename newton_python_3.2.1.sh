@@ -5,10 +5,9 @@
 #   for use on UTK Newton only
 #
 # Files changed in order to compile:
-#   
+#   None
 ################################################################################
 
-INSTALLDIR="/data/apps"
 APPNAME="python"
 VERSION="3.2.1"
 APPDIR="$INSTALLDIR/$APPNAME/$VERSION"

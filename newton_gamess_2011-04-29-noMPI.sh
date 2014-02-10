@@ -1,21 +1,19 @@
 #!/bin/bash
 
 ################################################################################
-# NumPy version 1.7.0 INSTALL SCRIPT
+# GAMESS version 2011-04-29-noMPI INSTALL SCRIPT
 #   for use on UTK Newton only
 #
 # Files changed in order to compile:
 #   None
 ################################################################################
 
-APPNAME="numpy"
-VERSION="1.7.0"
+APPNAME="gamess"
+VERSION="2011-04-29-noMPI"
 APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
-module load python/2.7.3
-python setup.py build
-python setup.py install --prefix=$APPDIR
+rm gamess.01.x
 
-module switch python/2.7.3 python/3.2.1
-python3 setup.py build
-python3 setup.py install --prefix=$APPDIR
+./config
+./compall
+./lked gamess 01
