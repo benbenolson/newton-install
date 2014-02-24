@@ -1,0 +1,22 @@
+#%Module1.0#####################################################################
+##
+## R modulefile
+##
+## modulefiles/R. 
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads the Schrodinger Suite \n"
+        puts stderr "\n\t including Desmod, Maestro, and mmshare \n"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "loads Schrodinger Suite into the working environment (includes Desmod, Maestro, and mmshare)."
+
+# for Tcl script use only
+set     topdir       /data/apps/schrodinger
+set     version      "2010-02"
+
+setenv        SCHRODINGER    $topdir/$version
+prepend-path  PATH           $topdir/$version
+

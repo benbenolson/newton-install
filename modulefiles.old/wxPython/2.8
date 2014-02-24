@@ -1,0 +1,18 @@
+#%Module1.0#####################################################################
+##
+## wxpython modulefile
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads wxPython version $version\n"
+}
+
+module-whatis   "loads wxPython into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/wxPython
+set     version      "2.8"
+
+prepend-path PATH $topdir/$version/bin
+prepend-path LD_RUN_PATH $topdir/$version/lib
+prepend-path LD_LIBRARY_PATH $topdir/$version/lib

@@ -1,0 +1,45 @@
+#%Module1.0#####################################################################
+##
+## intel modulefile
+##
+## modulefiles/intel. 
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads the Intel compiler suite version $version \n"
+}
+
+module-whatis   "loads the Intel compiler suite into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/intel
+set     version      "11.1.072"
+
+setenv MKLROOT /data/apps/intel/11.1.072/mkl
+
+prepend-path MANPATH /data/apps/intel/11.1.072/man/en_US:/data/apps/intel/11.1.072/mkl/man/en_US:/data/apps/intel/11.1.072/man/en_US:/data/apps/intel/11.1.072/mkl/man/en_US
+
+setenv IPPROOT /data/apps/intel/11.1.072/ipp/em64t
+
+prepend-path LM_LICENSE_FILE 28518@license.newton.utk.edu
+#prepend-path INTEL_LICENSE_FILE /data/apps/intel/11.1.072/licenses
+
+prepend-path LIBRARY_PATH /data/apps/intel/11.1.072/lib/intel64:/data/apps/intel/11.1.072/ipp/em64t/lib:/data/apps/intel/11.1.072/mkl/lib/em64t:/data/apps/intel/11.1.072/tbb/intel64/cc4.1.0_libc2.4_kernel2.6.16.21/lib:/data/apps/intel/11.1.072/lib/intel64:/data/apps/intel/11.1.072/ipp/em64t/lib:/data/apps/intel/11.1.072/mkl/lib/em64t:/data/apps/intel/11.1.072/tbb/intel64/cc4.1.0_libc2.4_kernel2.6.16.21/lib
+
+prepend-path FPATH /data/apps/intel/11.1.072/mkl/include
+
+prepend-path LD_LIBRARY_PATH /data/apps/intel/11.1.072/lib/intel64:/data/apps/intel/11.1.072/ipp/em64t/sharedlib:/data/apps/intel/11.1.072/mkl/lib/em64t:/data/apps/intel/11.1.072/tbb/intel64/cc4.1.0_libc2.4_kernel2.6.16.21/lib:/data/apps/intel/11.1.072/lib/intel64:/data/apps/intel/11.1.072/ipp/em64t/sharedlib:/data/apps/intel/11.1.072/mkl/lib/em64t:/data/apps/intel/11.1.072/tbb/intel64/cc4.1.0_libc2.4_kernel2.6.16.21/lib
+
+prepend-path LIB /data/apps/intel/11.1.072/ipp/em64t/lib:/data/apps/intel/11.1.072/ipp/em64t/lib
+
+prepend-path CPATH /data/apps/intel/11.1.072/ipp/em64t/include:/data/apps/intel/11.1.072/mkl/include:/data/apps/intel/11.1.072/tbb/include:/data/apps/intel/11.1.072/ipp/em64t/include:/data/apps/intel/11.1.072/mkl/include:/data/apps/intel/11.1.072/tbb/include
+
+prepend-path NLSPATH /data/apps/intel/11.1.072/lib/intel64/locale/%l_%t/%N:/data/apps/intel/11.1.072/ipp/em64t/lib/locale/%l_%t/%N:/data/apps/intel/11.1.072/mkl/lib/em64t/locale/%l_%t/%N:/data/apps/intel/11.1.072/idb/intel64/locale/%l_%t/%N:/data/apps/intel/11.1.072/lib/intel64/locale/%l_%t/%N:/data/apps/intel/11.1.072/ipp/em64t/lib/locale/%l_%t/%N:/data/apps/intel/11.1.072/mkl/lib/em64t/locale/%l_%t/%N:/data/apps/intel/11.1.072/idb/intel64/locale/%l_%t/%N
+
+prepend-path PATH /data/apps/intel/11.1.072/bin/intel64:/data/apps/intel/11.1.072/bin/intel64
+
+prepend-path DYLD_LIBRARY_PATH /data/apps/intel/11.1.072/tbb/intel64/cc4.1.0_libc2.4_kernel2.6.16.21/lib:/data/apps/intel/11.1.072/tbb/intel64/cc4.1.0_libc2.4_kernel2.6.16.21/lib
+
+prepend-path INCLUDE /data/apps/intel/11.1.072/ipp/em64t/include:/data/apps/intel/11.1.072/mkl/include:/data/apps/intel/11.1.072/ipp/em64t/include:/data/apps/intel/11.1.072/mkl/include
+
+

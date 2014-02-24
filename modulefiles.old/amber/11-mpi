@@ -1,0 +1,20 @@
+#%Module1.0#####################################################################
+##
+## Amber modulefile
+##
+## modulefiles/Amber. 
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads Amber\n"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "loads Amber into the working environment."
+
+set version 11-mpi
+set topdir /data/apps/Amber/amber11-parallel
+
+setenv AMBERHOME $topdir
+prepend-path  PATH              $topdir/bin
+prepend-path  LD_LIBRARY_PATH   $topdir/lib

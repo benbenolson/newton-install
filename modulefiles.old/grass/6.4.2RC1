@@ -1,0 +1,20 @@
+#%Module1.0#####################################################################
+##
+## grass modulefile
+##
+## modulefiles/grass/6.4.2RC1
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads grass version $version\n"
+}
+
+module-whatis   "loads grass into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/grass
+set     version      "6.4.2RC1"
+
+module load python2/2.5.5
+prepend-path PATH $topdir/$version/bin
+

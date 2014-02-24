@@ -1,0 +1,21 @@
+#%Module1.0#####################################################################
+##
+## gcc modulefile
+##
+## modulefiles/gcc/4.4.6 
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads GCC version $version\n"
+}
+
+module-whatis   "loads GCC into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/gcc
+set     version      "4.4.6"
+
+prepend-path PATH $topdir/$version/bin
+prepend-path MANPATH $topdir/$version/man
+prepend-path LD_RUN_PATH $topdir/$version/lib64
+

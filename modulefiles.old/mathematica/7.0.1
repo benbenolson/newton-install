@@ -1,0 +1,22 @@
+#%Module1.0#####################################################################
+##
+## Mathematica modulefile
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads Mathematica version $version \n"
+}
+
+module-whatis   "loads Mathematica into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/mathematica/7.0.1/Server
+set     version      7.0.1
+
+prepend-path  PATH        $topdir/Executables
+setenv MATHEMATICA_BASE   $topdir/Configuration
+prepend-path  CLASSPATH   /opt/sge/lib/jgdi.jar:/opt/sge/lib/drmaa.jar:/opt/sge/lib/juti.jar
+prepend-path  LD_LIBRARY_PATH   /opt/sge/lib/lx24-amd64
+
+system "xset fp+ tcp/headnode.newton.utk.edu:7100"
+

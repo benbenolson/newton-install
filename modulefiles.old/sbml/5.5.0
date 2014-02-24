@@ -1,0 +1,18 @@
+#%Module1.0#####################################################################
+
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads libSBML \n"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "loads libSBML into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/sbml
+set     version      "5.5.0"
+
+prepend-path  LD_LIBRARY_PATH       $topdir/$version/lib
+#setenv        MATLAB_USE_USERPATH   1
+prepend-path  MATLABPATH            $topdir/$version/lib
+

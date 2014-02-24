@@ -1,0 +1,24 @@
+#%Module1.0#####################################################################
+
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads PGI compilers \n"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "loads PGI compilers into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/pgi
+set     version      "13.5"
+
+prepend-path  PATH              $topdir/$version/linux86-64/$version/bin
+prepend-path  MANPATH           $topdir/$version/linux86-64/13.5/man
+prepend-path  LD_LIBRARY_PATH   $topdir/$version/linux86-64/13.5/lib
+prepend-path  LD_LIBRARY_PATH   $topdir/$version/linux86-64/13.5/libso
+prepend-path  LIBRARY_PATH      $topdir/$version/linux86-64/13.5/lib
+prepend-path  LIBRARY_PATH      $topdir/$version/linux86-64/13.5/libso
+prepend-path  INCLUDE           $topdir/$version/linux86-64/13.5/include
+prepend-path  INCLUDE           $topdir/$version/linux86-64/13.5/include_acc
+prepend-path  LM_LICENSE_FILE   $topdir/$version/license.dat
+

@@ -1,0 +1,18 @@
+#%Module1.0#####################################################################
+##
+## LAMMPS modulefile
+##
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads LAMMPS \n"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "loads LAMMPS into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/lammps
+set     version      "22Feb13"
+
+prepend-path  PATH              $topdir/$version

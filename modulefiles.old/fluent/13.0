@@ -1,0 +1,20 @@
+#%Module1.0#####################################################################
+##
+## R modulefile
+##
+## modulefiles/fluent. 
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads Fluent \n"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "loads Fluent into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/fluent
+set     version      "13.0"
+
+prepend-path  PATH              $topdir/$version/v130/fluent/bin
+

@@ -1,0 +1,23 @@
+#%Module1.0#####################################################################
+##
+## libxml2 modulefile
+##
+## modulefiles/curses/5.9
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads curses version $version\n"
+}
+
+module-whatis   "loads curses into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/ncurses
+set     version      "5.9"
+
+prepend-path PATH $topdir/$version/bin
+prepend-path LD_RUN_PATH $topdir/$version/lib
+prepend-path LD_LIBRARY_PATH $topdir/$version/lib
+prepend-path INCLUDE $topdir/$version/include
+prepend-path MANPATH $topdir/$version/man
+

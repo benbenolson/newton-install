@@ -1,0 +1,25 @@
+#%Module1.0#####################################################################
+##
+## GROMACS modulefile
+##
+## modulefiles/gromacs/4.5.1/mpi 
+##
+
+set version 4.5.1
+
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads the MPI version of GROMACS\n"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "loads GROMACS MPI into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/gromacs/$version/mpi
+
+prereq openmpi
+prepend-path  PATH              $topdir/bin
+prepend-path  LD_LIBRARY_PATH   $topdir/lib
+prepend-path  MANPATH           $topdir/share/man
+

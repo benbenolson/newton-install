@@ -1,0 +1,22 @@
+#%Module1.0#####################################################################
+##
+## idl modulefile
+##
+## modulefiles/idl. 
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads idl version \n"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "loads idl into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/idl
+set     version      "6.3"
+
+prepend-path  PATH              $topdir/idl_$version/bin
+prepend-path  MANPATH           $topdir/idl_$version/man
+prepend-path  LD_LIBRARY_PATH   $topdir/idl_$version/lib
+

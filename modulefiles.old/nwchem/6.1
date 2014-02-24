@@ -1,0 +1,23 @@
+#%Module1.0#####################################################################
+##
+## NWChem modulefile
+##
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads NWChem \n"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "loads NWChem into the working environment."
+
+# for Tcl script use only
+set     version      6.1
+set     topdir       /data/apps/nwchem
+
+#setenv NWCHEM_TOP $topdir/$version
+prepend-path  PATH              $topdir/$version/bin
+system "ln -fs $topdir/$version/data/default.nwchemrc ~/.nwchemrc"
+
+
+

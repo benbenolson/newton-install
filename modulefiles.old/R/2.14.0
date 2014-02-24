@@ -1,0 +1,20 @@
+#%Module1.0#####################################################################
+##
+## R modulefile
+##
+## modulefiles/R. 
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads R \n"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "loads R into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/R
+set     version      "2.14.0"
+
+prepend-path  PATH              $topdir/$version/bin
+prepend-path  MANPATH           $topdir/$version/share/man

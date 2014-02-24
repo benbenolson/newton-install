@@ -1,0 +1,17 @@
+#%Module1.0#####################################################################
+
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads FFmpeg version $version\n"
+}
+
+module-whatis   "loads FFmpeg into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/FFmpeg
+set     version      0.11.1
+
+prepend-path PATH         $topdir/$version/bin
+prepend-path MANPATH      $topdir/$version/share/ffmpeg
+#prepend-path LD_RUN_PATH  $topdir/$version/lib
+

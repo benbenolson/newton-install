@@ -1,0 +1,22 @@
+#%Module1.0#####################################################################
+##
+## openmpi modulefile
+##
+## modulefiles/openmpi. 
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads openmpi version $version \n"
+}
+
+module-whatis   "loads OpenMPI into the working environment."
+
+conflict openmpi
+# for Tcl script use only
+set     topdir       /data/apps/openmpi
+set     version      "1.6.3-intel-psm"
+setenv     OMPI_MCA_btl_openib_warn_no_device_params_found 0
+
+prepend-path  PATH              $topdir/$version/bin
+prepend-path  MANPATH           $topdir/$version/share/man
+prepend-path  LD_LIBRARY_PATH   $topdir/$version/lib

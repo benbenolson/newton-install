@@ -1,0 +1,21 @@
+#%Module1.0#####################################################################
+##
+## RAxML-7.0.4 modulefile
+##
+## modulefiles/RAxML-7.0.4. 
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads RAxML \n"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "loads RAxML into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/RAxML/7.2.6
+
+
+prereq openmpi/1.4.3-gcc-psm
+prepend-path  PATH              $topdir
+

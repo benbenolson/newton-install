@@ -1,0 +1,15 @@
+#%Module1.0#####################################################################
+##
+## site utilities modulefile
+##
+## modulefiles/site_utilities. 
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads site utilities \n"
+}
+
+module-whatis   "loads site utilities into the working environment."
+
+prepend-path  PATH              /data/apps/site_utilities
+

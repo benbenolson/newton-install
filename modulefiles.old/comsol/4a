@@ -1,0 +1,21 @@
+#%Module1.0#####################################################################
+##
+## comsol modulefile
+##
+## modulefiles/comsol. 
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads comsol version 4a\n"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "loads comsol into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/comsol
+set     version      "4a"
+
+prepend-path  PATH              $topdir/$version/bin
+prepend-path  MANPATH           $topdir/$version/man
+prepend-path  LD_LIBRARY_PATH   $topdir/$version/lib

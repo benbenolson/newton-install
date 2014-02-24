@@ -1,0 +1,20 @@
+#%Module1.0#####################################################################
+##
+## PhyML_3.0 modulefile
+##
+## modulefiles/PhyML_3.0. 
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads PhyML_3.0 version \n"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "loads PhyML_3.0 into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/PhyML_3.0
+
+prepend-path  PATH              $topdir
+prepend-path  MANPATH           $topdir
+prepend-path  LD_LIBRARY_PATH   $topdir

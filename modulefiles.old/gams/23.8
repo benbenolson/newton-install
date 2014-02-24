@@ -1,0 +1,17 @@
+#%Module1.0#####################################################################
+
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads GAMS"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis	"loads GAMS into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/gams
+set     version      "23.8"
+
+prepend-path  PATH              $topdir/$version
+prepend-path  LD_LIBRARY_PATH   $topdir/$version
+

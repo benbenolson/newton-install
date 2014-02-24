@@ -1,0 +1,22 @@
+#%Module1.0#####################################################################
+##
+## tmux modulefile
+##
+## modulefiles/tmux. 
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads tmux version 1.7"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis	"loads tmux 1.7 into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/tmux
+set     version      "1.7"
+
+module load libevent/2.0.21
+
+prepend-path  PATH              $topdir/$version/bin
+prepend-path  MANPATH           $topdir/$version/share/man

@@ -1,0 +1,20 @@
+#%Module1.0#####################################################################
+##
+## hpl modulefile
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads hpl version $version\n"
+}
+
+module-whatis   "loads Python into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/hpl
+set     version      "2.1"
+
+prepend-path PATH $topdir/$version/bin/CUDA
+prepend-path INCLUDE $topdir/$version/include
+prepend-path LD_RUN_PATH $topdir/$version/lib/CUDA
+module load cuda
+

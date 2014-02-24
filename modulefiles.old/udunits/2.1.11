@@ -1,0 +1,20 @@
+#%Module1.0#####################################################################
+##
+## udunits modulefile
+##
+## modulefiles/udunits. 
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads udunits version 2.1.11 \n"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "loads udunits into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/udunits
+set     version      "2.1.11"
+
+prepend-path  PATH              $topdir/$version/bin
+prepend-path  LD_LIBRARY_PATH   $topdir/$version/lib

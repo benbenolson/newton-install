@@ -1,0 +1,19 @@
+#%Module1.0#####################################################################
+##
+## maple modulefile
+##
+## modulefiles/maple. 
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads D-cache SRM"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis	"loads SRM into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/grid/srm
+set     version      "1.9.5-23"
+
+prepend-path  PATH              $topdir/$version/bin

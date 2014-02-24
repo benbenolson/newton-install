@@ -1,0 +1,15 @@
+#%Module1.0#####################################################################
+
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads GaussView version $version \n"
+}
+
+module-whatis   "loads GaussView into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/gaussian
+set     version      "gv"
+
+prepend-path  PATH              $topdir/$version
+prepend-path  LD_LIBRARY_PATH   $topdir/$version/lib

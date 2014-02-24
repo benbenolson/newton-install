@@ -1,0 +1,17 @@
+#%Module1.0#####################################################################
+##
+## GAMESS modulefile
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads GAMESS version 2010-10 \n"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "loads GAMESS into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/gamess
+set     version      "2010-10"
+
+prepend-path  PATH              $topdir/$version

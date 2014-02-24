@@ -1,0 +1,9 @@
+#%Module1.0#####################################################################
+
+set     topdir       /data/apps/magma
+set     version      "1.2.1"
+module-whatis        "loads magma version $version"
+
+prepend-path  LD_LIBRARY_PATH   $topdir/$version/lib
+prepend-path  INCLUDE           $topdir/$version/include
+

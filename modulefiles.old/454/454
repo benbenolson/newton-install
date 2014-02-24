@@ -1,0 +1,19 @@
+#%Module1.0#####################################################################
+##
+## 454 modulefile
+##
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads 454 \n"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "loads 454 into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/454
+set     version      2.6
+
+prepend-path  PATH              $topdir/$version/bin
+
