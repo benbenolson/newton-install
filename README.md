@@ -5,7 +5,7 @@
 
 2. Next, set the environment variable `INSTALLDIR` to the top-level directory where you want your applications installed.
 
-3. Some modules have to explicitly link to the MKL, and they use the `INSTALLDIR` environment variable to do this.  Make sure you have your intel compilers installed in $INSTALLDIR/intel/2011.5.220 or whichever version you use.
+3. Some modules have to explicitly link to the MKL, and they use the `INSTALLDIR` environment variable to do this.  Make sure you have your intel compilers installed in `$INSTALLDIR/intel/2011.5.220` or whichever version you use.
 
 4. Now, run the script `newton_install_all.pl` and wait for the applications to be installed.
 
