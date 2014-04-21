@@ -55,3 +55,41 @@ In order for it to work, there must be multiple directories in the same director
      appear in the module system, but their version and name must match the names in `scripts` and `tarballs` exactly.
   5. `manual`, which is not required by the script, but where the applications that must be built manually will go.
   6. `backup`, which is also not required by the script. This contains backups of all of the `tarballs`, unchanged.
+
+##Adding New Applications
+To add applications to the build system, you need to add three files to the build system directory:
+  1. Your build script. This is placed in the `scripts` directory.
+  2. Your installation directory. This is a directory of the source code, where the build script should be copied to and run.
+     Place this directory in the `tarballs` directory.
+  3. Your modulefile and corresponding directory. Place this in `modulefiles`.
+In the following sections, the user is attempting to add `gcc` version `4.8.1` to the build system.
+
+###The Build Script
+Write a script called `newton_gcc_4.8.1.sh`.  This script should compile and install the application, assuming that `$INSTALLDIR`
+specifies the location that the applications are going to be installed to.  In my scripts, I use the three lines:
+
+```
+APPNAME="gcc"
+VERSION="4.8.1"
+APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
+```
+
+Then, when I go to install the application, I can use a line similar to `./configure --prefix=$APPDIR` if the application uses
+a fully compliant GNU build system, and run a `make install` once the application is configured and built.
+
+Once you are finished writing this script, name it accordingly and place it in `scripts`.
+
+###The Installation Directory
+Copy the source directory that you used the build script in to build the application. The main build system will copy your script
+directly into this directory, and run the script from there.
+
+Occasionally, builds will fail because the source directory did not get cleaned before it was copied into the `tarballs` directory.
+Make sure your installation directory is clean before copying it.
+
+###The Modulefile
+Make a new directory in `modulefiles` that is named the name of your application, such as `gcc`. Then, craft your modulefile and
+name it the version of your application, such as `4.8.1`. Place this file in the directory that you just created.
+
+Make sure this directory and file are named properly, otherwise, the build system will not be able to find them and will not copy
+them to the proper modules directory. Thus, if other applications in the build system depend on that application that you are
+building, they will fail too, because their build scripts will not be able to load that modulefile.
