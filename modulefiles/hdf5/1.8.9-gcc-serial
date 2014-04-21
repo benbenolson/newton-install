@@ -1,0 +1,22 @@
+#%Module1.0#####################################################################
+##
+## HDF5 modulefile
+##
+## modulefiles/HDF5/1.8.9-gcc-serial. 
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads HDF5 \n"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "loads HDF5 into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/hdf5
+set version 1.8.9-gcc-serial
+
+prepend-path  PATH              $topdir/$version/bin
+prepend-path  LD_RUN_PATH   $topdir/$version/lib
+prepend-path  INCLUDE  $topdir/$version/include
+

@@ -12,6 +12,6 @@ APPNAME="perl"
 VERSION="5.16.2"
 APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
-echo ./Configure -des -Dprefix=$APPDIR
+./Configure -des -Dprefix=$APPDIR
 make test
 make install

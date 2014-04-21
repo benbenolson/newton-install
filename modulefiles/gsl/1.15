@@ -1,0 +1,23 @@
+#%Module1.0#####################################################################
+##
+## GSL modulefile
+##
+## modulefiles/gsl/1.15 
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads GSL \n"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "loads GSL into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/gsl
+set version 1.15
+
+prepend-path  PATH              $topdir/$version/bin
+prepend-path  LD_LIBRARY_PATH   $topdir/$version/lib
+prepend-path  MANPATH           $topdir/$version/share/man
+prepend-path  MANPATH           $topdir/$version/share/info
+

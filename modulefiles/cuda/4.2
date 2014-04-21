@@ -1,0 +1,10 @@
+#%Module1.0#####################################################################
+
+set     topdir       /data/apps/cuda
+set     version      "4.2"
+set     libs         $topdir/$version/toolkit/lib64:$topdir/$version/toolkit/lib
+module-whatis        "loads CUDA version $version"
+
+prepend-path  PATH              $topdir/$version/toolkit/bin
+prepend-path  LD_LIBRARY_PATH   $libs
+

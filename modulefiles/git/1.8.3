@@ -1,0 +1,21 @@
+#%Module1.0#####################################################################
+
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads git \n"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "loads git into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/git
+set     version      "1.8.3"
+
+prepend-path  PATH              $topdir/$version/bin
+prepend-path  PATH              $topdir/$version/libexec/git-core
+prepend-path  PATH              $topdir/$version/libexec/git-core/mergetools
+prepend-path  PERL5LIB          $topdir/$version/lib/perl5/site_perl/5.8.8
+prepend-path  PYTHONPATH        $topdir/$version/lib/python2.4/site-packages
+prepend-path  PYTHONPATH        $topdir/$version/lib/python2.4/site-packages/git_remote_helpers
+prepend-path  MANPATH           $topdir/$version/share/man

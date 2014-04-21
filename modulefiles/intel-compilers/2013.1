@@ -1,0 +1,55 @@
+#%Module1.0#####################################################################
+##
+## intel modulefile
+##
+## modulefiles/intel. 
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads the Intel compiler suite version $version \n"
+}
+
+module-whatis   "loads the Intel compiler suite into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/intel
+set     version      "2013.1"
+set     appdir       "$topdir/$version"
+set     intelroot    "$appdir/composer_xe_2013_sp1.1.106"
+
+#prepend-path INTEL_LICENSE_FILE $topdir/$version/licenses
+prepend-path LM_LICENSE_FILE 28518@license.newton.utk.edu
+
+########################################################################3
+
+prepend-path CPATH $intelroot/mkl/include:$intelroot/tbb/include
+
+prepend-path INCLUDE $intelroot/mkl/include
+
+prepend-path LD_LIBRARY_PATH $intelroot/compiler/lib/intel64:$intelroot/ipp/../compiler/lib/intel64:$intelroot/ipp/lib/intel64:$intelroot/compiler/lib/intel64:$intelroot/mkl/lib/intel64:$intelroot/tbb/lib/intel64/gcc4.1
+
+prepend-path LIBRARY_PATH $intelroot/compiler/lib/intel64:$intelroot/ipp/../compiler/lib/intel64:$intelroot/ipp/lib/intel64:$intelroot/compiler/lib/intel64:$intelroot/mkl/lib/intel64:$intelroot/tbb/lib/intel64/gcc4.1
+
+prepend-path MANPATH $intelroot/man/en_US:$intelroot/man/en_US
+
+prepend-path NLSPATH $intelroot/compiler/lib/intel64/locale/%l_%t/%N:$intelroot/ipp/lib/intel64/locale/%l_%t/%N:$intelroot/mkl/lib/intel64/locale/%l_%t/%N:$intelroot/debugger/gdb/intel64_mic/py24/share/locale/%l_%t/%N:$intelroot/debugger/gdb/intel64/py24/share/locale/%l_%t/%N:$intelroot/debugger/intel64/locale/%l_%t/%N
+
+prepend-path PATH $intelroot/bin/intel64:$intelroot/debugger/gdb/intel64_mic/py24/bin:$intelroot/debugger/gdb/intel64/py24/bin:$intelroot/bin/intel64:$intelroot/bin/intel64_mic:$intelroot/debugger/gui/intel64
+
+prepend-path MIC_LD_LIBRARY_PATH $intelroot/compiler/lib/mic:$intelroot/compiler/lib/mic:$intelroot/mkl/lib/mic:$intelroot/tbb/lib/mic
+
+prepend-path MIC_LIBRARY_PATH $intelroot/tbb/lib/mic
+
+# non-path-variables; values should override current
+setenv IPPROOT $intelroot/ipp
+
+setenv MKLROOT $intelroot/mkl
+
+setenv GDB_CROSS $intelroot/debugger/gdb/intel64_mic/py24/bin/gdb-mic
+
+setenv GDBSERVER_MIC $intelroot/debugger/gdb/target/mic/bin/gdbserver
+
+setenv IDB_HOME $intelroot/bin/intel64
+
+setenv TBBROOT $intelroot/tbb
+

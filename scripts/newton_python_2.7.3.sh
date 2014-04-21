@@ -12,7 +12,7 @@ APPNAME="python"
 VERSION="2.7.3"
 APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
+make clean
 ./configure --prefix="$APPDIR"
 make
-make test
 make install

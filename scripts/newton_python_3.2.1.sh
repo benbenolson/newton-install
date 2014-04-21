@@ -12,9 +12,8 @@ APPNAME="python"
 VERSION="3.2.1"
 APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
-./configure --prefix="$APPDIR"
+./configure --prefix=$APPDIR
 make
-make test
 make install
 cd $APPDIR/bin
 ln -s python3 python

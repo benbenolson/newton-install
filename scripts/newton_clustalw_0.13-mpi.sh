@@ -18,6 +18,8 @@ export CFLAGS=-O3
 export CXXFLAGS=-O3
 
 make
+EXITSTATUS=$?
 make clean
 mkdir -p $APPDIR
-cp -r * $APPDIR
+cp -af * $APPDIR
+exit $EXITSTATUS
