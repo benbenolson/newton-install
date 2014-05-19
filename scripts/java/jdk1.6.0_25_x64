@@ -1,0 +1,21 @@
+#%Module1.0#####################################################################
+##
+## gcc modulefile
+##
+## modulefiles/java/4.4.6 
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads JAVA version $version\n"
+}
+
+module-whatis   "loads JAVA into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/java
+set     version      "jdk1.6.0_25_x64"
+
+prepend-path PATH $topdir/$version/bin
+prepend-path MANPATH $topdir/$version/man
+prepend-path LD_RUN_PATH $topdir/$version/lib
+
