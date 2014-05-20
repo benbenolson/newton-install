@@ -25,19 +25,19 @@ compilers that these scripts reference, you will have to change them yourself.
 ###Running the build system
 After installing the prerequisite applications and making sure that their modules can be loaded, choose the
 parameters that you are going to pass the build system.  Here they are:
-1. `--installdir`: this is the directory that you want to install your applications to. For example, if I were to
-   pass `--installdir=/data/apps` to the build system, gcc version 4.8.1 would be installed to 
-   `/data/apps/gcc/4.8.1`. By default, a temporary directory in `$TMPDIR` will be created for you.
-2. `--builddir`: this is the directory that the build system will use as temporary space to compile the
-   applications. It needs to have plenty of space to compile everything. By default, a temporary directory in
-   `$TMPDIR` will be created for you.
-3. `--moduledir`: this is the directory where your modulefiles are going to be installed. Typically, this direcotry
-   is called `modulefiles` in the environment modules installation directory. Again, a temporary directory will be
-   created for you if you do not specify this.
-4. `--verbose`: you know what this does.
-5. `--clean`: this flag will force the script to overwrite any existing application in the given `installdir`.
-6. `--superclean`: this flag will explicitly delete any current installation of the application in `installdir`,
-   and then replace it with a clean compile.
+  1. `--installdir`: this is the directory that you want to install your applications to. For example, if I were to
+     pass `--installdir=/data/apps` to the build system, gcc version 4.8.1 would be installed to 
+     `/data/apps/gcc/4.8.1`. By default, a temporary directory in `$TMPDIR` will be created for you.
+  2. `--builddir`: this is the directory that the build system will use as temporary space to compile the
+     applications. It needs to have plenty of space to compile everything. By default, a temporary directory in
+     `$TMPDIR` will be created for you.
+  3. `--moduledir`: this is the directory where your modulefiles are going to be installed. Typically, this
+     directory is called `modulefiles` in the environment modules installation directory. 
+     Again, a temporary directory will be created for you if you do not specify this.
+  4. `--verbose`: you know what this does.
+  5. `--clean`: this flag will force the script to overwrite any existing application in the given `installdir`.
+  6. `--superclean`: this flag will explicitly delete any current installation of the application in `installdir`,
+     and then replace it with a clean compile.
 After choosing your parameters carefully, run the main script, `install_all.pl`, with those parameters listed. As
 long as you do not specify `--clean` or `--superclean`, applications that have been installed in a previous run
 will be skipped.
