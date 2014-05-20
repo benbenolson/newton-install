@@ -1,72 +1,59 @@
 #The Newton Build System
 
+##What It Is
+The Newton Build System provides a way to automatically recompile and install all of the applications 
+installed on a cluster, without the need to manually recompile each and every thing separately. It also 
+provides a common format of storing the compilation scripts, modulefiles, and source directories.
+
+Simply put, it runs the build scripts that you give it in the source directory, does some error-checking, and
+handles your dependencies for you. However, in order for this to work, the user must write his/her compilation
+script in a specified manner. If the user does not, the build may fail or applications may break.
+
 ##How to Use
-1. First, install the necessary manual modules. This includes all of the modules listed below.
 
-2. Next, set the environment variable `INSTALLDIR` to the top-level directory where you want your applications installed.
-
-3. Some modules have to explicitly link to the MKL, and they use the `INSTALLDIR` environment variable to do this.
-   Make sure you have your intel compilers installed in `$INSTALLDIR/intel/2011.5.220` or whichever version you use.
-
-4. Set the environment variable `MODULEDIR`, which tells the script where to put the modulefiles. 
-   Make sure this is inside a working Modules installation, because the build scripts use modules to load the necessary 
-   libraries and dependencies as they build applications.  
-   If you do not set this variable, the script will complain about it, and many builds will fail.
-
-4. Now, run the script `newton_install_all.pl` and wait for the applications to be installed.
-
-5. The program will output on `stdout` as it installs modulefiles into the proper directory. 
-   If it says that an application is a `NON-MODULE`, that means that the modulefile could not be found.
-   Usually this means that the application is simply a Perl or Python library that does not need the module system, 
-   but you should check each of these to make sure there are no errors with your modulefiles.
-
-##Modules to Install First
+###Modules to Install First
 These modules are required for you to install before you run the install script, unless you want things to fail.
-Oftentimes, they are directly referenced in the install scripts via a line like `module load intel-compilers/2011.5.220`; therefore,
-if you no longer have the versions of the intel compilers that these scripts reference, you will have to change them yourself.
-
-Of course, if you are not going to install, for example, magma, which is the only application that requires cuda, then the script
-will not check for cuda, and you therefore do not have to install it.
-
-Make sure that the modulefiles are in the correct place and can be loaded; else, the builds will fail and you will have to start over.
+Oftentimes, they are directly referenced in the install scripts via a line like 
+`module load intel-compilers/2011.5.220`; therefore, if you no longer have the versions of the intel 
+compilers that these scripts reference, you will have to change them yourself.
 
 1. intel-compilers/2011.5.220
 2. intel-compilers/2013.1
 3. cuda/4.2
+4. module (no specific version needed)
 
-##How it Works
-The script simply looks at the current directory, and loops through each of the `newton_*.sh` scripts. 
-Each file that matches this pattern gets copied into the directory `buildir`, where the files in the corresponding tar file 
-get copied.  Each of these build scripts checks the environment variable `INSTALLDIR` and installs the application to 
-`$INSTALLDIR/name/version` where name and version are the name and version of the application being built.
-
-Then, after building an application, it will copy the appropriate modulefile from the `modulefiles` directory, assuming that you have
-your Modules system installed in `$MODULEDIR`.
-
-The script then checks the return code of each of the build scripts in order to determine if they succeeded or not, and 
-prints out a statment of failure or success depending on that value (0 is success, nonzero is failure).
-
-In order for it to work, there must be multiple directories in the same directory as the script:
-  1. `scripts`, which is the directory where you put all of the newton_name_version.sh installation scripts.
-  2. `tarballs`, which is where the corresponding newton_name_version directories are. These directories contain the files necessary
-     to compile the application, and must be named exactly the same as the matching newton_name_version.sh script.
-  3. `buildir`, which is where the script will copy the `tarballs` and `scripts` in order to install the applications.
-  4. `modulefiles`, which is where the script will pull the modulefiles from. These are in exactly the same format that they will
-     appear in the module system, but their version and name must match the names in `scripts` and `tarballs` exactly.
-  5. `manual`, which is not required by the script, but where the applications that must be built manually will go.
-  6. `backup`, which is also not required by the script. This contains backups of all of the `tarballs`, unchanged.
+###Running the build system
+After installing the prerequisite applications and making sure that their modules can be loaded, choose the
+parameters that you are going to pass the build system.  Here they are:
+1. `--installdir`: this is the directory that you want to install your applications to. For example, if I were to
+   pass `--installdir=/data/apps` to the build system, gcc version 4.8.1 would be installed to 
+   `/data/apps/gcc/4.8.1`. By default, a temporary directory in `$TMPDIR` will be created for you.
+2. `--builddir`: this is the directory that the build system will use as temporary space to compile the
+   applications. It needs to have plenty of space to compile everything. By default, a temporary directory in
+   `$TMPDIR` will be created for you.
+3. `--moduledir`: this is the directory where your modulefiles are going to be installed. Typically, this direcotry
+   is called `modulefiles` in the environment modules installation directory. Again, a temporary directory will be
+   created for you if you do not specify this.
+4. `--verbose`: you know what this does.
+5. `--clean`: this flag will force the script to overwrite any existing application in the given `installdir`.
+6. `--superclean`: this flag will explicitly delete any current installation of the application in `installdir`,
+   and then replace it with a clean compile.
+After choosing your parameters carefully, run the main script, `install_all.pl`, with those parameters listed. As
+long as you do not specify `--clean` or `--superclean`, applications that have been installed in a previous run
+will be skipped.
 
 ##Adding New Applications
 To add applications to the build system, you need to add three files to the build system directory:
   1. Your build script. This is placed in the `scripts` directory.
-  2. Your installation directory. This is a directory of the source code, where the build script should be copied to and run.
-     Place this directory in the `tarballs` directory.
-  3. Your modulefile and corresponding directory. Place this in `modulefiles`.
+  2. Your source directory. This is a directory of the source code, where the build script should be 
+     copied to and run. Place this directory in the `tarballs` directory.
+  3. Your modulefile. Place this in `scripts` as well.
 In the following sections, the user is attempting to add `gcc` version `4.8.1` to the build system.
 
 ###The Build Script
-Write a script called `newton_gcc_4.8.1.sh`.  This script should compile and install the application, assuming that `$INSTALLDIR`
-specifies the location that the applications are going to be installed to.  In my scripts, I use the three lines:
+Write a script called `gcc_4.8.1.sh`.  This script should compile and install the application, 
+assuming that `$INSTALLDIR` specifies the location that the applications are going to be installed to.
+In my scripts, I use the three lines:
 
 ```
 APPNAME="gcc"
@@ -74,22 +61,25 @@ VERSION="4.8.1"
 APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 ```
 
-Then, when I go to install the application, I can use a line similar to `./configure --prefix=$APPDIR` if the application uses
-a fully compliant GNU build system, and run a `make install` once the application is configured and built.
+Then, when I go to install the application, I can use a line similar to `./configure --prefix=$APPDIR`
+if the application uses a fully compliant GNU build system, and run a `make install` once the 
+application is configured and built. Applications will vary, however.
 
-Once you are finished writing this script, name it accordingly and place it in `scripts`.
+Once you are finished writing this script, name it the version of the application that you are running,
+followed by a `.sh`, and place it in `scripts` in the subdirectory with the same name of the application
+that you have just built. In our example, our build script would be called `4.8.1.sh` and be placed in
+`scripts/gcc/4.8.1.sh`.
 
 ###The Installation Directory
-Copy the source directory that you used the build script in to build the application. The main build system will copy your script
-directly into this directory, and run the script from there.
+Copy the source directory that you used the build script in to build the application. 
+The main build system will copy your script directly into this directory, and run the script from there.
 
-Occasionally, builds will fail because the source directory did not get cleaned before it was copied into the `tarballs` directory.
-Make sure your installation directory is clean before copying it.
+WARNING: Occasionally, builds will fail because the source directory did not get cleaned before it was copied 
+into the `tarballs` directory. Make sure your installation directory is clean before copying it.
 
 ###The Modulefile
-Make a new directory in `modulefiles` that is named the name of your application, such as `gcc`. Then, craft your modulefile and
-name it the version of your application, such as `4.8.1`. Place this file in the directory that you just created.
+Copy the modulefile into `scripts` with the same name of the version of the application you have just built.
+In our example, the modulefile would be called `4.8.1`.
 
-Make sure this directory and file are named properly, otherwise, the build system will not be able to find them and will not copy
-them to the proper modules directory. Thus, if other applications in the build system depend on that application that you are
-building, they will fail too, because their build scripts will not be able to load that modulefile.
+This modulefile will be directly copied into your `moduledir`, and will be used to compile future applications,
+so be sure that the modulefile is valid and can be loaded properly.
