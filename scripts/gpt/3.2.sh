@@ -7,9 +7,6 @@
 # Files changed in order to compile:
 #   
 ################################################################################
-APPNAME="gpt"
-VERSION="3.2"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 export GPT_LOCATION=$APPDIR
 ./build_gpt

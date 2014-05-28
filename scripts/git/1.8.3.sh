@@ -8,9 +8,6 @@
 #   None
 ################################################################################
 
-APPNAME="git"
-VERSION="1.8.3"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 make clean
 make configure

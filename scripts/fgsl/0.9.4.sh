@@ -8,9 +8,6 @@
 #   Deleted parameter "-p" after command "cp" in Makefile
 ################################################################################
 
-APPNAME="fgsl"
-VERSION="0.9.4"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 module load gcc/4.8.1
 module load gsl/1.15

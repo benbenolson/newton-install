@@ -9,9 +9,6 @@
 ################################################################################
 
 INSTALLDIR="/data/apps"
-APPNAME="blast"
-VERSION="2.2.24"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 module unload intel-compilers
 module unload python

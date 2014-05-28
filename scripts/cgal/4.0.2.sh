@@ -8,9 +8,6 @@
 #   None
 ################################################################################
 
-APPNAME="cgal"
-VERSION="4.0.2"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 module load cmake/2.8.8
 

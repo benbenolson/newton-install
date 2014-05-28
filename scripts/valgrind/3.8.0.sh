@@ -8,9 +8,6 @@
 #   None
 ################################################################################
 
-APPNAME="valgrind"
-VERSION="3.8.0"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 ./configure --prefix=$APPDIR --with-mpicc=mpicc --enable-only64bit
 make check

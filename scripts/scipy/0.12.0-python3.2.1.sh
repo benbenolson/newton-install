@@ -8,9 +8,6 @@
 #   None
 ################################################################################
 
-APPNAME="scipy"
-VERSION="0.12.0-python3.2.1"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 #Load the newest Intel compilers
 module switch intel-compilers intel-compilers/2013.1

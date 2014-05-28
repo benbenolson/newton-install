@@ -8,9 +8,6 @@
 #   None
 ################################################################################
 
-APPNAME="gcc"
-VERSION="4.8.1"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 module load gmp/5.1.1
 module load mpfr/3.1.2

@@ -8,9 +8,6 @@
 #   None
 ################################################################################
 
-APPNAME="biopython"
-VERSION="1.58"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 module load numpy/1.7.0-python2.7.3
 module load python/2.7.3

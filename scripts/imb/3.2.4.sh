@@ -8,9 +8,6 @@
 #   
 ################################################################################
 
-APPNAME="imb"
-VERSION="3.2.3"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 cd src
 make clean

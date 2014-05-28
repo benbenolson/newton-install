@@ -9,9 +9,6 @@
 #   
 ################################################################################
 
-APPNAME="mercurial"
-VERSION="1.6.2"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 make PREFIX=$APPDIR all
 make PREFIX=$APPDIR install

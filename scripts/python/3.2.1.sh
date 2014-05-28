@@ -8,9 +8,6 @@
 #   None
 ################################################################################
 
-APPNAME="python"
-VERSION="3.2.1"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 ./configure --prefix=$APPDIR
 make

@@ -8,9 +8,6 @@
 #   None
 ################################################################################
 
-APPNAME="elmer"
-VERSION="6531"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 module switch intel-compilers intel-compilers/2013.1
 
@@ -29,9 +26,6 @@ for m in $modules; do
   make distclean
   ./configure --prefix=$APPDIR
   make
-  EXITSTATUS=$?
   make install
   cd .. 
 done
-
-exit $EXITSTATUS

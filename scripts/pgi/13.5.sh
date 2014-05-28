@@ -8,9 +8,6 @@
 #   None
 ################################################################################
 
-APPNAME="pgi"
-VERSION="13.5"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 cp -r pgi $INSTALLDIR
 cd $APPDIR/linux86-64/13.5/bin

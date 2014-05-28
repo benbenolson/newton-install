@@ -29,49 +29,28 @@ sub split_name
   }
 }
 
-# Returns 1 if the given directory is empty
-sub is_empty_dir
-{
-  my $dir = @_;
-  my $fh;
-  my $file;
-
-  if(opendir($fh, $dir))
-  {
-    while(defined($file = readdir($fh))
-    {
-      next if $file eq '.' or $file eq '..';
-      closedir($fh);
-      return 0;
-    }
-    closedir($fh);
-    return 1;
-  }
-  else
-  {
-    return -1;
-  }
-}
-
 # Builds the application given
 sub build
 {
   my $app = shift;
   my ($name, $version) = split_name($app);
+  $ENV{APPNAME} = $name;
+  $ENV{VERSION} = $version;
+  $ENV{APPDIR}  = "$installdir/$name/$version";
 
   # Remove the previous installation if superclean is set
-  if($superclean and -e $installdir/$name/$version)
+  if($superclean)
   {
     print "--Explicitly deleting '$installdir/$name/$version' before building.\n" if $verbose;
-    `rm -rf $installdir/$name/$version`;
+    `rm -rf $installdir/$name/$version &> /dev/null`;
   }
 
-  if($clean or not -e "$installdir/$name/$version")
+  if($clean or not -e "$installdir/$name/$version/.newton")
   {
-    `rm -rf $builddir/$name/$version`;
+    `rm -rf $builddir/$app &> /dev/null`;
 
     print "--Copying the tarball '$app'.\n" if $verbose;
-    `cp -r tarballs/$app $builddir`;
+    `cp -rf tarballs/$app $builddir`;
     if ($? != 0) { `echo "Couldn't find tarball for $app." >> error.log`; return 1; }
 
     print "--Copying the script '$app'.\n" if $verbose;
@@ -83,6 +62,10 @@ sub build
     chdir("$builddir/$app");
     `sh $app.sh &>$dir/logs/$app.log`;
     chdir($dir);
+
+    # Delete the build directory after I'm finished
+    `rm -rf $builddir/$app &> /dev/null`;
+
     return $?;
   }
   else
@@ -141,12 +124,12 @@ sub newton_install_all
     my $app = shift @apps;
     my ($name, $version) = split_name($app);
     if($? == 1) { next; }
-    print "Looking at '$name\_$version'.\n" if $verbose;
+    print "$name\_$version\n" if $verbose;
 
     # Check for the existence of the corresponding script
     unless(-e "scripts/$name/$version.sh")
     {
-      print "WARNING: Cannot find the build script for '$name/$version'.\n";
+      print "WARNING: Cannot find the build script for '$name/$version'.\n\n";
       next;
     }
 
@@ -165,13 +148,13 @@ sub newton_install_all
     # Checks to see if the build succeeded
     if(build($app) != 0)
     {
-      print "Building $app failed. Deleting installation.\n";
+      print "Building $app failed.\n\n";
       push( @failedapps, $app );
-      `rm -rf $installdir/$name/$version`;
-      if(is_empty_dir('$installdir/$name')) { `rmdir $installdir/$name`; }
+      `rm $installdir/$name/$version/.newton &> /dev/null`;
     }
     else
     {
+      `touch $installdir/$name/$version/.newton &> /dev/null`;
       $inarow = 1;
       install_module($app);
       $installed{$app} = 1;
@@ -242,10 +225,13 @@ setup();
 print "Installing applications in:    '$installdir'\n";
 print "Using this directory to build: '$builddir'\n";
 print "Installing modules to:         '$moduledir'\n";
-if(@ARGV) {
+if(@ARGV)
+{
   print "Installing $ARGV[0]\n";
   newton_install_one();
-} else {
-  print "Installing all applications.\n";
+} 
+else 
+{
+  print "Installing all applications.\n\n";
   newton_install_all();
 }

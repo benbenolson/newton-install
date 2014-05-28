@@ -8,9 +8,6 @@
 #   None
 ################################################################################
 
-APPNAME="boost"
-VERSION="1.51"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 ./bootstrap.sh --prefix=/$APPDIR
 ./b2 install --prefix=$APPDIR

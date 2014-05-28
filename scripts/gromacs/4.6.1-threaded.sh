@@ -9,9 +9,6 @@
 #   
 ################################################################################
 
-APPNAME="gromacs"
-VERSION="4.6.1-threaded"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 module load cmake/2.8.8
 module load intel-compilers/2011.5.220

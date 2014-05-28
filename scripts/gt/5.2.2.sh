@@ -8,9 +8,6 @@
 #   None
 ################################################################################
 
-APPNAME="globus"
-VERSION="5.2.2"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 module load perl/5.16.2
 

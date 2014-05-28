@@ -8,9 +8,6 @@
 #   None
 ################################################################################
 
-APPNAME="openmpi"
-VERSION="1.4.3-pgi-psm"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 #Install with PGI compilers
 module switch intel-compilers pgi

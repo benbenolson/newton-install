@@ -8,9 +8,6 @@
 #   None
 ################################################################################
 
-APPNAME="yasm"
-VERSION="1.1.0"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 ./configure --prefix=$APPDIR
 make

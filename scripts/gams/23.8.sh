@@ -9,9 +9,6 @@
 #   
 ################################################################################
 
-APPNAME="gams"
-VERSION="23.8"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 ./linux_x64_64_sfx.exe
 mkdir -p $APPDIR

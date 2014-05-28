@@ -9,9 +9,6 @@
 #   
 ################################################################################
 
-APPNAME="gnuplot"
-VERSION="4.6.0"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 ./configure --prefix=$APPDIR
 make

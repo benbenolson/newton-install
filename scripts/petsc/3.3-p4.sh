@@ -8,9 +8,6 @@
 #   None
 ################################################################################
 
-APPNAME="petsc"
-VERSION="3.3-p4"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 module load intel-compilers/2011.5.220
 module load hypre/2.8.0b

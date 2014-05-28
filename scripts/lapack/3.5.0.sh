@@ -8,9 +8,6 @@
 #   None
 ################################################################################
 
-APPNAME="lapack"
-VERSION="3.5.0"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 #First, build blas and lapack.
 cd BLAS/SRC

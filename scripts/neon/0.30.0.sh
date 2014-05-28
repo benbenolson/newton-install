@@ -8,9 +8,6 @@
 #   None
 ################################################################################
 
-APPNAME="neon"
-VERSION="0.30.0"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 ./configure --prefix=$APPDIR --with-ssl=openssl
 make

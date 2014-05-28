@@ -8,9 +8,6 @@
 #   None
 ################################################################################
 
-APPNAME="gmp"
-VERSION="5.1.1"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 ./configure --prefix=$APPDIR --enable-cxx
 make

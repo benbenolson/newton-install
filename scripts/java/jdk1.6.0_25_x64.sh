@@ -9,9 +9,6 @@
 #   
 ################################################################################
 
-APPNAME="java"
-VERSION="jdk1.6.0_25_x64"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 mkdir -p $APPDIR
 rm -rf $APPDIR/*

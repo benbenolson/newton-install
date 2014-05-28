@@ -8,9 +8,6 @@
 #   
 ################################################################################
 
-APPNAME="clustalw"
-VERSION="0.13-mpi"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 export CC=mpicc
 export CXX=mpic++

@@ -9,9 +9,6 @@
 #   
 ################################################################################
 
-APPNAME="fpmpi"
-VERSION="2.2"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 module unload openmpi
 module load openmpi/1.4.3-intel-psm

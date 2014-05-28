@@ -8,9 +8,6 @@
 #   None
 ################################################################################
 
-APPNAME="cgal"
-VERSION="3.9"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 module load cmake/2.8.8
 module load intel-compilers/2011.5.220

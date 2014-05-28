@@ -8,10 +8,6 @@
 #   None
 ################################################################################
 
-APPNAME="netcdf"
-VERSION="4.2.1-pgi"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
-HDF5VERSION=1.8.9-gcc-serial
 HDF5DIR="$INSTALLDIR/hdf5/$HDF5VERSION"
 
 module load hdf5/1.8.9-gcc-serial

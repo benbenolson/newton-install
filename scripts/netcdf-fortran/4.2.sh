@@ -8,9 +8,6 @@
 #   None
 ################################################################################
 
-APPNAME="netcdf-fortran"
-VERSION="4.2.1-intel"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 module load netcdf/4.2.1-intel
 

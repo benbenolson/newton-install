@@ -8,9 +8,6 @@
 #   None
 ################################################################################
 
-APPNAME="r"
-VERSION="3.0.1"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 ./configure --prefix=$APPDIR
 make -j 8

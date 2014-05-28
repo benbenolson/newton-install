@@ -8,9 +8,6 @@
 #   
 ################################################################################
 
-APPNAME="clustalw"
-VERSION="2.0.12"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 ./configure --prefix=$APPDIR CC=icc CFLAGS=-O3 CXX=icpc CXXFLAGS=-O3
 make

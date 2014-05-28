@@ -8,9 +8,6 @@
 #   None
 ################################################################################
 
-APPNAME="hdf5"
-VERSION="1.6.10"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 ./configure --prefix=$APPDIR --enable-parallel --enable-shared CC=mpicc
 make

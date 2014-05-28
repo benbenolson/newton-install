@@ -9,9 +9,6 @@
 #   
 ################################################################################
 
-APPNAME="java"
-VERSION="1.7u7"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 mkdir -p $APPDIR
 rm -rf $APPDIR/*

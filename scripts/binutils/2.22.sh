@@ -8,9 +8,6 @@
 #   None
 ################################################################################
 
-APPNAME="binutils"
-VERSION="2.22"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 CC=gcc ./configure --prefix=$APPDIR
 make

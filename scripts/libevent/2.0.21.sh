@@ -8,9 +8,6 @@
 #   None
 ################################################################################
 
-APPNAME="libevent"
-VERSION="2.0.21"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 ./configure --prefix=$APPDIR
 make

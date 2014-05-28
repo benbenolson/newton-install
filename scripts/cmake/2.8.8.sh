@@ -8,9 +8,6 @@
 #   
 ################################################################################
 
-APPNAME="cmake"
-VERSION="2.8.8"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 ./configure --prefix=$APPDIR
 make

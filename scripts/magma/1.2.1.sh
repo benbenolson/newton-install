@@ -9,11 +9,6 @@
 #   make.inc: copied make.inc.int64 to make.inc; changed CUDADIR to $(CUDADIR)
 ################################################################################
 
-APPNAME="magma"
-VERSION="1.2.1"
-export APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
-CUDAVERSION="4.2"
-MKLVERSION="11.1.072"
 
 export NEWTON_CUDADIR="$INSTALLDIR/cuda/$CUDAVERSION/toolkit"
 export MKLDIR="$INSTALLDIR/intel/$MKLVERSION/mkl"

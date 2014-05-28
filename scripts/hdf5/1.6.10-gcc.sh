@@ -8,9 +8,6 @@
 #   None
 ################################################################################
 
-APPNAME="hdf5"
-VERSION="1.6.10-gcc"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 module switch openmpi openmpi/1.4.3-gcc-psm
 

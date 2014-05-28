@@ -8,9 +8,6 @@
 #   None
 ################################################################################
 
-APPNAME="fftw"
-VERSION="2.1.5"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 ./configure --prefix=$APPDIR --enable-threads --enable-float
 make

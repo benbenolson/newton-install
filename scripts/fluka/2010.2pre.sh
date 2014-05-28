@@ -9,9 +9,6 @@
 #   
 ################################################################################
 
-APPNAME="fluka"
-VERSION="2010.2pre"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 make clean
 mkdir -p $APPDIR

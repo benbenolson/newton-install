@@ -8,9 +8,6 @@
 #   None
 ################################################################################
 
-APPNAME="numpy"
-VERSION="1.7.0-python2.7.3"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 module load python/2.7.3
 python setup.py build

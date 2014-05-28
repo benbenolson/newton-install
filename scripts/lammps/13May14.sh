@@ -9,9 +9,6 @@
 #   
 ################################################################################
 
-APPNAME="lammps"
-VERSION="13May14"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 module load gcc/4.8.2 #To avoid an incompatibility issue with GCC 4.8.1
 module load fftw/2.1.5

@@ -8,9 +8,6 @@
 #   None
 ################################################################################
 
-APPNAME="perl"
-VERSION="5.16.2"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 module load perl/5.16.2
 

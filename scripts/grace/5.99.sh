@@ -9,9 +9,6 @@
 #   
 ################################################################################
 
-APPNAME="grace"
-VERSION="5.99"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 ./configure --prefix=$APPDIR --enable-grace-home=$APPDIR --enable-netcdf --enable-jpegdrv --enable-pngdrv --enable-editres --enable-xmhtml --with-fftw --with-x
 

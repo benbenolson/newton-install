@@ -8,9 +8,6 @@
 #   None
 ################################################################################
 
-APPNAME="tmux"
-VERSION="1.7"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 module load libevent/2.0.21
 

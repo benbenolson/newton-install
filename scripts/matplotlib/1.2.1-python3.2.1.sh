@@ -8,9 +8,6 @@
 #   None
 ################################################################################
 
-APPNAME="matplotlib"
-VERSION="1.2.1-python3.2.1"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 module unload python
 module unload numpy

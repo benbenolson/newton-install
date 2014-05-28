@@ -8,9 +8,6 @@
 #   None
 ################################################################################
 
-APPNAME="subversion"
-VERSION="1.6.17"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 SQLITEDIR="$INSTALLDIR/sqlite/3.7.6.3"
 NEONDIR="$INSTALLDIR/neon/0.30.0"
 

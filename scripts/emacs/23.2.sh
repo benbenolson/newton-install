@@ -8,9 +8,6 @@
 #   
 ################################################################################
 
-APPNAME="emacs"
-VERSION="23.2"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 ./configure --prefix=$APPDIR --with-gif=no
 make -j 8

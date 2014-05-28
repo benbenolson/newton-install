@@ -9,9 +9,6 @@
 #   
 ################################################################################
 
-APPNAME="openfoam"
-VERSION="2.1.1"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 #copy all the files to the installation directory and go there
 mkdir -p $APPDIR

@@ -8,9 +8,6 @@
 #   None
 ################################################################################
 
-APPNAME="gsl"
-VERSION="1.15"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 ./configure --prefix=$APPDIR
 make -j8

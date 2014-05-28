@@ -8,9 +8,6 @@
 #   None
 ################################################################################
 
-APPNAME="openmpi"
-VERSION="1.4.3-gcc-psm"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 #Install with GCC compilers
 module unload intel-compilers

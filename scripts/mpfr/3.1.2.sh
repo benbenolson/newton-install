@@ -8,9 +8,6 @@
 #   None
 ################################################################################
 
-APPNAME="mpfr"
-VERSION="3.1.2"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 ./configure --prefix=$APPDIR --enable-thread-safe --with-gmp=$INSTALLDIR/gmp/5.1.1 CC=icc
 make

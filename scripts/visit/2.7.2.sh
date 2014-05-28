@@ -8,10 +8,6 @@
 #   
 ################################################################################
 
-APPNAME="visit"
-VERSION="2.7.2"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
-OPENMPIVERSION="1.4.3-gcc-psm"
 OPENMPIDIR="$INSTALLDIR/openmpi/$OPENMPIVERSION"
 
 module unload openmpi

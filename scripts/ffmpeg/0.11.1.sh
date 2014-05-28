@@ -8,9 +8,6 @@
 #   None
 ################################################################################
 
-APPNAME="ffmpeg"
-VERSION="0.11.1"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 
 module load yasm/1.1.0
 module load gcc/4.8.1

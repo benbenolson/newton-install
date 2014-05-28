@@ -9,11 +9,7 @@
 #   
 ################################################################################
 
-APPNAME="ghc"
-VERSION="7.6.2"
-APPDIR="$INSTALLDIR/$APPNAME/$VERSION"
 PLAT="x86_64-unknown-linux-gnu"
 
 ./configure --prefix=$APPDIR
-make
 make install
