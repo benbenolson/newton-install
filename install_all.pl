@@ -14,6 +14,24 @@ my $verbose    = 0;
 my $clean      = 0;
 my $superclean = 0;
 
+sub help
+{
+  (my $help_message = q{
+    Usage:
+      install_all.pl [OPTION...] [APPNAME_APPVERSION]
+      install_all.pl [OPTION...]
+    Options:
+      --verbose: print out a lot more
+      --installdir: define the installation directory
+      --moduledir:  define the installation directory for modules
+      --builddir:   define the temporary build directory
+      --clean:      overwrite installed applications
+      --superclean: delete installed applications and then install
+
+    }) =~ s/^ {4}//mg;
+  die "$help_message";
+}
+
 sub split_name
 {
   my $app = shift;
@@ -50,7 +68,7 @@ sub build
     `rm -rf $builddir/$app &> /dev/null`;
 
     print "--Copying the tarball '$app'.\n" if $verbose;
-    `cp -rf tarballs/$app $builddir`;
+    `cp -arf tarballs/$app $builddir`;
     if ($? != 0) { `echo "Couldn't find tarball for $app." >> error.log`; return 1; }
 
     print "--Copying the script '$app'.\n" if $verbose;
@@ -60,13 +78,11 @@ sub build
     print "--Running the build script '$app.sh'.\n" if $verbose;
     my $dir = cwd();
     chdir("$builddir/$app");
-    `sh $app.sh &>$dir/logs/$app.log`;
+    `./$app.sh &>$dir/logs/$app.log`;
     chdir($dir);
+    if (($? != 0) or (not -e "$installdir/$name/$version")) { `echo "The build script failed for $app" >> error.log`; return 1; }
 
-    # Delete the build directory after I'm finished
-    `rm -rf $builddir/$app &> /dev/null`;
-
-    return $?;
+    return 0;
   }
   else
   {
@@ -159,6 +175,8 @@ sub newton_install_all
       install_module($app);
       $installed{$app} = 1;
     }
+    # Delete the build script after I'm finished installing
+    `rm -rf $builddir/$app`;
   }
 
   print "FAILED APPS:\n";
@@ -202,7 +220,7 @@ sub setup
               'c|clean'        => \$clean,
               's|superclean'   => \$superclean
              )
-  or die "Error in command line arguments.\n";
+  or help();
   
   # Supply a temporary directory if directories are not specified
   if(defined $installdir) { die "Directory \"$installdir\" doesn't exist" unless -d "$installdir"; }

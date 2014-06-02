@@ -30,7 +30,7 @@ prepend-path INCLUDE /data/apps/intel/2011.5.220/composerxe-2011.5.220/ipp/inclu
 
 prepend-path LD_LIBRARY_PATH /data/apps/intel/2011.5.220/composerxe-2011.5.220/compiler/lib/intel64:/data/apps/intel/2011.5.220/composerxe-2011.5.220/ipp/../compiler/lib/intel64:/data/apps/intel/2011.5.220/composerxe-2011.5.220/ipp/lib/intel64:/data/apps/intel/2011.5.220/composerxe-2011.5.220/compiler/lib/intel64:/data/apps/intel/2011.5.220/composerxe-2011.5.220/mkl/lib/intel64:/data/apps/intel/2011.5.220/composerxe-2011.5.220/tbb/lib/intel64//cc4.1.0_libc2.4_kernel2.6.16.21:/data/apps/intel/2011.5.220/composerxe-2011.5.220/mpirt/lib/intel64
 
-prepend-path LIBRARY_PATH /data/apps/intel/2011.5.220/composerxe-2011.5.220/compiler/lib/intel64:/data/apps/intel/2011.5.220/composerxe-2011.5.220/ipp/../compiler/lib/intel64:/data/apps/intel/2011.5.220/composerxe-2011.5.220/ipp/lib/intel64:/data/apps/intel/2011.5.220/composerxe-2011.5.220/compiler/lib/intel64:/data/apps/intel/2011.5.220/composerxe-2011.5.220/mkl/lib/intel64:/data/apps/intel/2011.5.220/composerxe-2011.5.220/tbb/lib/intel64//cc4.1.0_libc2.4_kernel2.6.16.21:
+append-path LIBRARY_PATH /data/apps/intel/2011.5.220/composerxe-2011.5.220/compiler/lib/intel64:/data/apps/intel/2011.5.220/composerxe-2011.5.220/ipp/../compiler/lib/intel64:/data/apps/intel/2011.5.220/composerxe-2011.5.220/ipp/lib/intel64:/data/apps/intel/2011.5.220/composerxe-2011.5.220/compiler/lib/intel64:/data/apps/intel/2011.5.220/composerxe-2011.5.220/mkl/lib/intel64:/data/apps/intel/2011.5.220/composerxe-2011.5.220/tbb/lib/intel64//cc4.1.0_libc2.4_kernel2.6.16.21:
 
 prepend-path MANPATH /data/apps/intel/2011.5.220/composerxe-2011.5.220/man/en_US:/data/apps/intel/2011.5.220/composerxe-2011.5.220/man/en_US
 

@@ -15,6 +15,6 @@ module load mpc/1.0.1
 
 mkdir build
 cd build
-../configure --prefix=$APPDIR --with-mpfr=/data/apps/mpfr/3.1.2 --with-gmp=/data/apps/gmp/5.1.1 --with-mpc=/data/apps/mpc/1.0.1 --srcdir=..
+../configure --prefix=$APPDIR --with-mpfr="$INSTALLDIR/mpfr/3.1.2" --with-gmp="$INSTALLDIR/gmp/5.1.1" --with-mpc="$INSTALLDIR/mpc/1.0.1" --srcdir=..
 make
 make install

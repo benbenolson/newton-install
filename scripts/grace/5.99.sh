@@ -9,12 +9,11 @@
 #   
 ################################################################################
 
-
-./configure --prefix=$APPDIR --enable-grace-home=$APPDIR --enable-netcdf --enable-jpegdrv --enable-pngdrv --enable-editres --enable-xmhtml --with-fftw --with-x
+./configure --prefix="$APPDIR" --enable-grace-home="$APPDIR" --enable-netcdf --enable-jpegdrv --enable-pngdrv --enable-pdfdrv --enable-editres --with-fftw --with-x
 
 make
 make install
-cd $APPDIR/doc
+cd "$APPDIR"/doc
 mkdir man1
 mv *.1 man1
 cd ../bin
