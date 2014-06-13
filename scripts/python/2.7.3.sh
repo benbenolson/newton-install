@@ -8,8 +8,12 @@
 #   None
 ################################################################################
 
-
-make clean
 ./configure --prefix="$APPDIR"
 make
 make install
+
+export PATH="$APPDIR/bin:$PATH"
+export INCLUDE="$APPDIR/include/python2.7:$INCLUDE"
+
+cd docutils_0.11
+./setup.py install

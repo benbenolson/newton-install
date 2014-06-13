@@ -9,6 +9,7 @@
 #   
 ################################################################################
 
+module load openmpi/1.4.3-intel-psm
 
 ./configure --prefix=$APPDIR --enable-sse --enable-mpi --enable-threads CC=icc CFLAGS=-O3 MPICC=mpicc
 make

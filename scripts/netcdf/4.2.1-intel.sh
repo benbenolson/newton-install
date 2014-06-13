@@ -8,6 +8,7 @@
 #   None
 ################################################################################
 
+HDF5VERSION="1.8.9-gcc-serial"
 HDF5DIR="$INSTALLDIR/hdf5/$HDF5VERSION"
 
 module load hdf5/1.8.9-gcc-serial

@@ -22,8 +22,6 @@ export FFLAGS=-fPIC
 modules="matc umfpack mathlibs elmergrid meshgen2d eio hutiter fem" 
 for m in $modules; do
   cd $m
-  make clean
-  make distclean
   ./configure --prefix=$APPDIR
   make
   make install

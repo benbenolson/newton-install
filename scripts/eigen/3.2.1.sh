@@ -1,21 +1,18 @@
 #!/bin/bash -e
 
 ################################################################################
-# IOAPI version 3.1 INSTALL SCRIPT
+# EIGEN version 3.2.1 INSTALL SCRIPT
 #   for use on UTK Newton only
 #
 # Files changed in order to compile:
 #   None
-#   
 ################################################################################
 
+module load cmake/2.8.8
 
-mkdir -p $APPDIR
-rm -rf $APPDIR/*
-cp -rf * $APPDIR
-cd $APPDIR
+mkdir build
+cd build
 
-export BIN=Linux2_x86_64ifort
-cd ioapi
-cp newton_makefile/Makefile .
+cmake -DCMAKE_INSTALL_PREFIX=$APPDIR ..
 make
+make install

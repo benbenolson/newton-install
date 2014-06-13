@@ -11,5 +11,4 @@
 
 ./configure --prefix=$APPDIR
 make
-make test
 make install

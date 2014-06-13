@@ -12,6 +12,7 @@
 
 module load cmake/2.8.8
 module load intel-compilers/2011.5.220
+module load openmpi/1.4.3-intel-psm
 
 INTELCOMPILERS=$INSTALLDIR/intel/2011.5.220/composerxe-2011.5.220/bin/intel64/icc
 

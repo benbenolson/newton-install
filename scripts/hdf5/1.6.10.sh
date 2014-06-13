@@ -8,6 +8,7 @@
 #   None
 ################################################################################
 
+module load openmpi/1.4.3-intel-psm
 
 ./configure --prefix=$APPDIR --enable-parallel --enable-shared CC=mpicc
 make

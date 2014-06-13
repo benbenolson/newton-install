@@ -8,10 +8,8 @@
 #   None
 ################################################################################
 
-
 #Install with GCC compilers
 module unload intel-compilers
-./configure --prefix=$APPDIR-gcc-psm --with-psm --with-sge=yes
+./configure --prefix=$APPDIR --with-psm --with-sge=yes
 make -j 8
-make check
 make install

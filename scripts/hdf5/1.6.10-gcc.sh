@@ -8,8 +8,8 @@
 #   None
 ################################################################################
 
-
-module switch openmpi openmpi/1.4.3-gcc-psm
+module load openmpi/1.4.3-gcc-psm
+#module switch openmpi openmpi/1.4.3-gcc-psm
 
 ./configure --prefix=$APPDIR --enable-parallel --enable-shared CC=mpicc
 make

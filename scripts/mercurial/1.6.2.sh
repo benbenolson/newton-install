@@ -9,6 +9,5 @@
 #   
 ################################################################################
 
-
-make PREFIX=$APPDIR all
-make PREFIX=$APPDIR install
+make PREFIX=$APPDIR build
+make PREFIX=$APPDIR install-bin

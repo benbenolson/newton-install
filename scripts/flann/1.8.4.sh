@@ -1,21 +1,21 @@
 #!/bin/bash -e
 
 ################################################################################
-# IOAPI version 3.1 INSTALL SCRIPT
+# FLANN version 1.8.4 INSTALL SCRIPT
 #   for use on UTK Newton only
 #
 # Files changed in order to compile:
 #   None
-#   
 ################################################################################
 
+module load cmake/2.8.8
+module load hdf5/1.8.9-gcc-serial
 
-mkdir -p $APPDIR
-rm -rf $APPDIR/*
-cp -rf * $APPDIR
-cd $APPDIR
+mkdir build
+cd build
 
-export BIN=Linux2_x86_64ifort
-cd ioapi
-cp newton_makefile/Makefile .
-make
+cmake -DCMAKE_INSTALL_PREFIX="$APPDIR" ..
+
+#First, build blas and lapack.
+make -j 8
+make install

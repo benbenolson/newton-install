@@ -8,6 +8,7 @@
 #   None
 ################################################################################
 
+module load openmpi/1.4.3-intel-psm
 
 ./configure --prefix=$APPDIR --with-mpicc=mpicc --enable-only64bit
 make check

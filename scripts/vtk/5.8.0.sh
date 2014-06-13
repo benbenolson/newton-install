@@ -1,21 +1,17 @@
 #!/bin/bash -e
 
 ################################################################################
-# IOAPI version 3.1 INSTALL SCRIPT
+# VTK version 5.8.0 INSTALL SCRIPT
 #   for use on UTK Newton only
 #
 # Files changed in order to compile:
 #   None
-#   
 ################################################################################
 
+module load cmake/2.8.8
 
-mkdir -p $APPDIR
-rm -rf $APPDIR/*
-cp -rf * $APPDIR
-cd $APPDIR
-
-export BIN=Linux2_x86_64ifort
-cd ioapi
-cp newton_makefile/Makefile .
-make
+mkdir build
+cd build
+cmake -DBUILD_SHARED_LIBS=ON -DCMAKE_INSTALL_PREFIX=$APPDIR ..
+make -j 8
+make install

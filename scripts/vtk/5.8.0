@@ -1,0 +1,20 @@
+#%Module1.0#####################################################################
+##
+## vtk modulefile
+##
+## modulefiles/vtk. 
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads vtk version $version \n"
+}
+
+module-whatis   "loads VTK into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/vtk
+set     version      "5.8.0"
+
+prepend-path  PATH              $topdir/$version/bin
+prepend-path  LD_LIBRARY_PATH   $topdir/$version/lib
+prepend-path  INCLUDE           $topdir/$version/include

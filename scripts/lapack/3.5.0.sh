@@ -8,14 +8,13 @@
 #   None
 ################################################################################
 
+module load cmake/2.8.8
+
+cmake -DCMAKE_INSTALL_PREFIX="$APPDIR" -G "Unix Makefiles"
 
 #First, build blas and lapack.
 cd BLAS/SRC
 make
 cd ../..
 make
-
-#Now copy lapack and blas to their directory.
-mkdir /data/apps/lapack
-mkdir $APPDIR
-cp blas_LINUX.a liblapack.a $APPDIR
+make install

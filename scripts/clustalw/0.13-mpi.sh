@@ -8,6 +8,7 @@
 #   
 ################################################################################
 
+module load openmpi/1.4.3-gcc-psm
 
 export CC=mpicc
 export CXX=mpic++
