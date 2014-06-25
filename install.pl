@@ -224,8 +224,9 @@ sub newton_install_all
   print "UNRESOLVABLE DEPENDENCIES:\n";
   foreach(@apps)
   {
+    $app = $_;
     print "  * $_ depends on: \n";
-    my @deps = get_deps $_;
+    my @deps = get_deps();
     foreach(@deps)
     {
       print "      $_ ";

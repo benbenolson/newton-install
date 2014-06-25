@@ -9,4 +9,4 @@
 ################################################################################
 
 ./bootstrap.sh --prefix=$APPDIR
-./bjam cxxflags=-fPIC --layout=versioned --build-type=complete -j 8 install
+./bjam cxxflags=-fPIC --layout=versioned --build-type=complete --without-mpi -j 4 install
