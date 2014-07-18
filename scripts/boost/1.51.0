@@ -1,7 +1,7 @@
 #%Module1.0#####################################################################
 
 set     topdir       /data/apps/boost
-set     version      "1.51"
+set     version      "1.51.0"
 module-whatis        "loads boost version $version"
 
 conflict boost

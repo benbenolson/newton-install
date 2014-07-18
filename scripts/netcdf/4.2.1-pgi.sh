@@ -7,9 +7,10 @@
 # Files changed in order to compile:
 #   None
 ################################################################################
-
+HDF5VERSION="1.8.9-gcc-serial"
 HDF5DIR="$INSTALLDIR/hdf5/$HDF5VERSION"
 
+module load pgi/13.5
 module load hdf5/1.8.9-gcc-serial
 
 CC=pgcc FC=pgf90 CPPFLAGS=-I$HDF5DIR/include LDFLAGS=-L$HDF5DIR/lib ./configure --prefix=$APPDIR

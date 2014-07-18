@@ -1,14 +1,13 @@
 #!/bin/bash -e
 
 ################################################################################
-# GMP version 5.1.1 INSTALL SCRIPT
+# BOOST version 1.51.0 INSTALL SCRIPT
 #   for use on UTK Newton only
 #
 # Files changed in order to compile:
 #   None
 ################################################################################
 
-./configure --prefix=$APPDIR --enable-cxx
-make
-make check
-make install
+
+./bootstrap.sh --prefix=/$APPDIR
+./b2 install --prefix=$APPDIR

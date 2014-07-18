@@ -8,12 +8,11 @@
 #   None
 ################################################################################
 
-
 module load perl/5.16.2
 
 cpan Archive/Tar.pm
 
 ./configure prefix=$APPDIR
-export INC=/data/apps/perl/5.16.2/lib/5.16.2
+export INC=$INSTALLDIR/perl/5.16.2/lib/5.16.2
 make
 make install

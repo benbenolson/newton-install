@@ -9,7 +9,6 @@
 #   
 ################################################################################
 
-
 module load gcc/4.8.2 #To avoid an incompatibility issue with GCC 4.8.1
 module load fftw/2.1.5
 module load openmpi/1.4.3-intel-psm
@@ -22,4 +21,3 @@ mkdir -p $APPDIR
 cp lmp_openmpi $APPDIR
 cd $APPDIR
 ln -s lmp_openmpi lmp
-

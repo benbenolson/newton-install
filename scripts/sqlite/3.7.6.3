@@ -10,6 +10,7 @@ module-whatis   "loads SQLite into the working environment."
 set     topdir       /data/apps/sqlite
 set     version      "3.7.6.3"
 
+setenv SQLITE_INSTALLDIR $topdir/$version
 prepend-path PATH $topdir/$version/bin
 prepend-path LD_RUN_PATH $topdir/$version/lib
 prepend-path MANPATH $topdir/$version/share/man

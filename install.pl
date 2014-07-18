@@ -1,16 +1,14 @@
 #!/usr/bin/perl
 
-use strict; use warnings;
-use Cwd; use File::Copy;
+use strict;
+use warnings;
+use Data::Dumper;
+use Cwd;
+use File::Copy;
 use Getopt::Long;
-use File::Temp qw/ tempdir /;
+use File::Temp 'tempdir';
 use sigtrap 'handler' => \&cleanup, 'normal-signals';
 
-
-# Names used by all functions
-my $app;
-my $name;
-my $version;
 # Temporary directories unless otherwise specified
 my $installdir = "/data/apps";
 my $moduledir  = "/data/apps/Modules/3.2.10/modulefiles";
@@ -19,87 +17,120 @@ my $builddir   = tempdir(CLEANUP => 1);
 my $verbose    = 0;
 my $clean      = 0;
 my $superclean = 0;
+my $test       = 0;
 
+sub vprint; # predeclared so it can be used without parens
 
-# Cleans up if a signal is caught
-sub cleanup
+GetOptions (
+  'i|installdir=s' => \$installdir,
+  'b|builddir=s'   => \$builddir,
+  'm|moduledir=s'  => \$moduledir,
+  'v|verbose'      => \$verbose,
+  'c|clean'        => \$clean,
+  's|superclean'   => \$superclean,
+  't|test'         => \$test
+  ) or help();
+
+for($installdir, $builddir, $moduledir, qw/tarballs scripts logs/)
 {
-  if(-d "$builddir/$app")
-  {
-    `rm -rf $builddir/$app`;
-  }
-  die;
+  die "Directory '$_' doesn't exist" unless -d $_;
 }
 
+print "Doing a harmless test run; no files will be changed.\n" if $test;
+print "Installing applications in:    '$installdir'\n";
+print "Using this directory to build: '$builddir'\n";
+print "Installing modules to:         '$moduledir'\n";
+
+if(@ARGV)
+{
+  print "Installing $ARGV[0]\n";
+  newton_install_one();
+}
+else
+{
+  print "Installing all applications.\n\n";
+  newton_install_all();
+}
+
+###############################
+#     HELPER FUNCTIONS        #
+###############################
 # Prints a help message
 sub help
 {
-  (my $help_message = q{
-    Usage:
-      install_all.pl [OPTION...] [APPNAME_APPVERSION]
-      install_all.pl [OPTION...]
-    Options:
-      --verbose: print out a lot more
-      --installdir: define the installation directory
-      --moduledir:  define the installation directory for modules
-      --builddir:   define the temporary build directory
-      --clean:      overwrite installed applications
-      --superclean: delete installed applications and then install
-
-    }) =~ s/^ {4}//mg;
-  die "$help_message";
+  die <DATA>;
 }
 
+sub cleanup
+{
+  File::Temp::cleanup();
+  die;
+}
+
+sub vprint
+{
+  print @_ if $verbose;
+}
+
+sub execute 
+{
+  return 0 if $test;
+  my ($errormsg, $cmd) = @_;
+  if(system("$cmd"))
+  {
+    return error($errormsg);
+  }
+  return 0;
+}
+
+sub error
+{
+  my $msg = shift;
+  warn $msg;
+  open(ERR, '+>> error.log') or die $!;
+  print ERR "$msg\n";
+  close ERR;
+  return 1;
+}
 
 # Splits the name by underscores to determine appname and version
 sub split_name
 {
-  if($app =~ /([^_]*)_(.*)/)
-  {
-    my $appname = $1; my $appversion = $2;
-    return ($appname, $appversion);
-  }
-  else
-  {
-    print "FATAL ERROR: Could not find an underscore in '$app'. Rename your tarball.\n";
-    exit;
-  }
+  my $app = shift;
+  my ($name, $version) = $app =~ /^(.+)\/(.+)/;
+  return($name, $version);
 }
 
 
 # Parses out the "module load" lines to return a list of dependencies
 sub get_deps
 {
+  my ($name, $version) = split_name(shift);
   my @deps;
   my $filename = "scripts/$name/$version.sh";
   open (FILE, $filename) or die $!;
   while(<FILE>)
   {
     next unless /^module load (\w+)\/(\S+)/;
-    push(@deps, "$1\_$2");
+    push(@deps, "$1\/$2");
   }
   close FILE;
-  @deps;
+  return @deps;
 }
 
 
 # Installs the modulefile and .newton file
 sub install_module
 {
+  my ($name, $version) = @_;
   # Copy the modulefile and .newton file into the proper directories
-  mkdir "$moduledir/$name";
-  `touch $installdir/$name/$version/.newton &> /dev/null`;
-  `cp scripts/$name/$version $moduledir/$name/ &> /dev/null`;
-
-  # If no such modulefile, say so
-  if($? != 0)
+  if(not -d "$moduledir/$name")
   {
-    print "Installed NON-MODULE '$name/$version'\n\n";
+    execute('Could not create module directory.', "mkdir $moduledir/$name");
   }
-  else
-  {
-    print "Installed MODULE '$name/$version'\n\n";
-  }
+  return 1 if execute("$name $version: Error copying module file", "cp scripts/$name/$version $moduledir/$name/");
+  return 1 if execute("$name $version: Error creating .newton flag", "touch $installdir/$name/$version/.newton");
+  return 0;
 }
 
 
@@ -108,58 +139,61 @@ sub install_module
 ##############################
 sub build
 {
+  my ($name, $version) = @_;
+  my $app = "$name/$version";
   # Set application-specific environment variables
   $ENV{INSTALLDIR} = "$installdir";
-  $ENV{APPNAME} = "$name";
-  $ENV{VERSION} = "$version";
-  $ENV{APPDIR}  = "$installdir/$name/$version";
+  $ENV{APPNAME}    = "$name";
+  $ENV{VERSION}    = "$version";
+  $ENV{APPDIR}     = "$installdir/$name/$version";
 
   # Remove the previous installation if superclean is set
   if($superclean)
   {
-    print "--Explicitly deleting '$installdir/$name/$version' before building.\n" if $verbose;
-    `rm -rf $installdir/$name/$version &> /dev/null`;
+    vprint "--Explicitly deleting '$installdir/$name/$version' before building.\n";
+    return 1 if execute("$name $version: Error removing installation directory", "rm -rf $installdir/$name/$version");
   }
 
+  if(-e "$installdir/$name/$version/.newton" and not $clean)
+  {
+    vprint "--It's already installed! Not building '$app'.\n\n";
+    return 0;
+  }
+ 
   # Now build the application if it's not already installed
-  if($clean or not -e "$installdir/$name/$version/.newton")
+  # Remove previous attempts to build
+  return 1 if execute("$name $version: Error removing build directory", "rm -rf $builddir/$name");
+  return 1 if execute("$name $version: Error creating build directory", "mkdir -p $builddir/$name");
+  return 1 if execute("$name $version: Error creating log directory", "mkdir -p logs/$name");
+
+  # Untar the source tarball
+  vprint "--Untarring '$version.tar.gz' to '$builddir/$name'.\n";
+  return 1 if execute("$name $version: Error copying source files", "tar -xzf scripts/$name/$version.tar.gz -C $builddir/$name");
+  opendir(DIR, "$builddir/$name") or die $!;
+  my $sourcedir;
+  while($sourcedir = readdir(DIR))
   {
-    # Remove previous attempts to build
-    `rm -rf $builddir/$app &> /dev/null`;
-
-    # Copy the tarball
-    print "--Copying the tarball '$app'.\n" if $verbose;
-    `cp -arf tarballs/$app $builddir`;
-    if ($? != 0) { `echo "Couldn't find tarball for $app." >> error.log`; return 1; }
-
-    # Copy the build script
-    print "--Copying the script '$app'.\n" if $verbose;
-    `cp scripts/$name/$version.sh $builddir/$app/$app.sh`;
-    if ($? != 0) { `echo "Couldn't find build script for $app" >> error.log`; return 1; }
-
-    # Run the build script
-    print "--Running the build script '$app.sh'.\n" if $verbose;
-    my $dir = cwd();
-    chdir("$builddir/$app");
-    `./$app.sh &>$dir/logs/$app.log`;
-    chdir($dir);
-
-    # If the build script died
-    if (($? != 0) or (not -e "$installdir/$name/$version"))
-    {
-      `echo "The build script failed for $app" >> error.log`; return 1;
-    }
-
-    # Remove the build directory once finished
-    `rm -rf $builddir/$app`;
-
-    return 0;
+    next if $sourcedir =~ /^\.{1,2}$/;
+    next unless (-d "$builddir/$name/$sourcedir");
+    last;
   }
-  else
-  {
-    print "--It's already installed! Not building '$app'.\n" if $verbose;
-    return 0;
-  }
+  return error("The tarball did not contain a source directory.") if not defined $sourcedir;
+
+  vprint "--Copying the script '$version.sh' to '$builddir/$name/$sourcedir'.\n";
+  return 1 if execute("$name $version: Error copying script", "cp scripts/$name/$version.sh $builddir/$name/$sourcedir");
+
+  vprint "--Running the build script '$app.sh'.\n";
+  my $dir = cwd();
+  chdir("$builddir/$name/$sourcedir");
+  my $return_code = execute("$name $version: The build script failed", "./$version.sh &> $dir/logs/$name/$version.log");
+  chdir($dir);
+
+  execute("$name $version: Error removing build directory.", "rm -rf $builddir/$name");
+
+  vprint "\n";
+
+  return 1 if $return_code;
+  return install_module($name, $version);
 }
 
 
@@ -170,28 +204,30 @@ sub newton_install_all
 {
   my $topdir = cwd();
   my ($inarow, @failedapps, %installed) = (1);
+  my @apps;
 
-  chdir("tarballs");
-  my @apps = glob "*";
-  chdir($topdir);
+  for (glob "scripts/*")
+  {
+    my @versions = glob "$_/*.sh";
+    for (@versions)
+    {
+      /scripts\/(.+)\/(.+)\.sh/;
+      my ($name, $version) = ($1, $2);
+      s/\.sh$/\.tar\.gz/g;
+      push(@apps, "$name/$version") if -e $_;
+    }
+  }
 
   # Goes through all the applications
   while(@apps and $inarow < @apps)
   {
-    $app = shift @apps;
-    ($name, $version) = split_name();
-    if($? == 1) { next; }
-    print "$name\_$version\n" if $verbose;
-
-    # Check for the existence of the corresponding script
-    unless(-e "scripts/$name/$version.sh")
-    {
-      print "WARNING: Cannot find the build script for '$name/$version'.\n\n";
-      next;
-    }
+    my $app = shift @apps;
+    my ($name, $version) = split_name($app);
+    next if $? == 1;
+    vprint "$name/$version\n";
 
     # Get a list of all dependencies that have not been installed during this run
-    my @missingdeps = grep {not $installed{$_}} get_deps();
+    my @missingdeps = grep {not $installed{$_}} get_deps($app);
 
     # Push the application to end of build list if it has unmet dependencies
     if(@missingdeps)
@@ -203,16 +239,14 @@ sub newton_install_all
     }
 
     # Checks to see if the build succeeded
-    if(build() != 0)
+    if(build($name, $version) != 0)
     {
       print "Building $app failed.\n\n";
       push( @failedapps, $app );
-      `rm $installdir/$name/$version/.newton &> /dev/null`;
     }
     else
     {
       $inarow = 1;
-      install_module();
       $installed{$app} = 1;
     }
   }
@@ -224,9 +258,9 @@ sub newton_install_all
   print "UNRESOLVABLE DEPENDENCIES:\n";
   foreach(@apps)
   {
-    $app = $_;
+    my $app = $_;
     print "  * $_ depends on: \n";
-    my @deps = get_deps();
+    my @deps = get_deps($app);
     foreach(@deps)
     {
       print "      $_ ";
@@ -244,60 +278,22 @@ sub newton_install_all
 sub newton_install_one
 {
   # Set the globals defining the application that we're installing
-  $app = $ARGV[0];
-  ($name, $version) = split_name();
+  my $app = $ARGV[0];
+  my ($name, $version) = split_name($app);
 
   # Build the application and check for success
-  if(build() != 0)
-  {
-    print "Building $app failed\n\n";
-  }
-  else
-  {
-    `touch $installdir/$name/$version/.newton &> /dev/null`;
-    install_module();
-  }
+  warn "Building $app $version failed\n\n" if build($name, $version);
 }
 
+__DATA__
+Usage:
+  install_all.pl [OPTION...] [APPNAME_APPVERSION]
+  install_all.pl [OPTION...]
+Options:
+  --verbose: print out a lot more
+  --installdir: define the installation directory
+  --moduledir:  define the installation directory for modules
+  --builddir:   define the temporary build directory
+  --clean:      overwrite installed applications
+  --superclean: delete installed applications and then install
 
-############################
-#          SETUP           #
-############################
-sub setup
-{
-  # Get command line options if supplied
-  GetOptions ('i|installdir=s' => \$installdir,
-              'b|builddir=s'   => \$builddir,
-              'm|moduledir=s'  => \$moduledir,
-              'v|verbose'      => \$verbose,
-              'c|clean'        => \$clean,
-              's|superclean'   => \$superclean
-             )
-  or help();
-  
-  if(defined $installdir) { die "Directory \"$installdir\" doesn't exist" unless -d "$installdir"; }
-  if(defined $builddir)   { die "Directory \"$builddir\" doesn't exist" unless -d "$builddir"; }
-  if(defined $moduledir)  { die "Directory \"$moduledir\" doesn't exist" unless -d "$moduledir"; }
-
-  die "Directory \"tarballs\" doesn't exist" unless -d "tarballs";
-  die "Directory \"scripts\" doesn't exist" unless -d "scripts";
-  die "Directory \"logs\" doesn't exist" unless -d "logs";
-
-  print "Installing applications in:    '$installdir'\n";
-  print "Using this directory to build: '$builddir'\n";
-  print "Installing modules to:         '$moduledir'\n";
-}
-
-
-##############################
-setup();
-if(@ARGV)
-{
-  print "Installing $ARGV[0]\n";
-  newton_install_one();
-} 
-else 
-{
-  print "Installing all applications.\n\n";
-  newton_install_all();
-}

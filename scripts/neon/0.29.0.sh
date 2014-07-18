@@ -1,14 +1,15 @@
 #!/bin/bash -e
 
 ################################################################################
-# GMP version 5.1.1 INSTALL SCRIPT
+# NEON version 0.29.0 INSTALL SCRIPT
 #   for use on UTK Newton only
 #
 # Files changed in order to compile:
 #   None
 ################################################################################
 
-./configure --prefix=$APPDIR --enable-cxx
+
+./configure --prefix=$APPDIR --with-ssl=openssl
 make
-make check
+#make check appears to never end
 make install

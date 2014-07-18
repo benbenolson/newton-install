@@ -13,3 +13,4 @@ module load python/2.7.3
 module load numpy/1.7.0-python2.7.3
 
 python setup.py install
+mkdir -p $APPDIR

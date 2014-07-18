@@ -10,8 +10,6 @@
 
 
 module load cmake/2.8.8
-module load intel-compilers/2011.5.220
-module unload boost/1.51
 module load gmp/5.1.1
 module load mpfr/3.1.2
 
@@ -26,7 +24,7 @@ MPFR_LIBRARY_DIR=$INSTALLDIR/mpfr/3.1.2/lib/
 GMPXX_INCLUDE_DIR=$INSTALLDIR/gmp/5.1.1/include
 GMPXX_LIBRARIES=$INSTALLDIR/gmp/5.1.1/lib/gmpxx.so
 
-rm CMakeCache.txt
+rm -f CMakeCache.txt
 rm -rf build
 
 mkdir build

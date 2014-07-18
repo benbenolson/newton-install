@@ -5,8 +5,9 @@ The Newton Build System provides a way to automatically recompile and install al
 installed on a cluster, without the need to manually recompile each and every thing separately. It also 
 provides a common format of storing the compilation scripts, modulefiles, and source directories.
 
-Simply put, it runs the build scripts that you give it in the source directory, does some error-checking, and
-handles your dependencies for you. However, in order for this to work, the user must write his/her compilation
+Simply put, it runs the build scripts that you give it in the source directory,
+does some error-checking, and handles your dependencies for you. 
+However, in order for this to work, the user must write his/her compilation
 script in a specified manner. If the user does not, the build may fail or applications may break.
 
 ##How to Use

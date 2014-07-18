@@ -13,8 +13,9 @@ module-whatis   "loads numpy into the working environment."
 
 # for Tcl script use only
 set     topdir       /data/apps/numpy
+set     version      1.7.0-python3.2.1
 module  load         python/3.2.1
 conflict numpy
 
-prepend-path  PYTHONPATH  $topdir/1.7.0/lib/python3.2/site-packages
+prepend-path  PYTHONPATH  $topdir/$version/1.7.0/lib/python3.2/site-packages
 

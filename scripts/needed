@@ -1,9 +1,0 @@
-./imb/3.2.4.sh:make all CC=mpicc
-./lammps/13May14.sh:make openmpi CC=mpicc FFT_INC="-DFFT_FFTW -I$INSTALLDIR/fftw/2.1.5/include" FFT_PATH="-L$INSTALLDIR/fftw/2.1.5/lib"
-./lammps/17Jun13.sh:make openmpi CC=mpicc FFT_INC="-DFFT_FFTW -I$INSTALLDIR/fftw/2.1.5/include" FFT_PATH="-L$INSTALLDIR/fftw/2.1.5/lib"
-./lammps/1Feb14.sh:make openmpi CC=mpicc FFT_INC="-DFFT_FFTW -I$INSTALLDIR/fftw/2.1.5/include" FFT_PATH="-L$INSTALLDIR/fftw/2.1.5/lib"
-./valgrind/3.8.0.sh:./configure --prefix=$APPDIR --with-mpicc=mpicc --enable-only64bit
-./hypre/2.8.0b.sh:./configure --prefix=$APPDIR --with-MPI --with-openmp --with-blas --with-lapack --with-lapack-lib-dirs=$INSTALLDIR/intel/2011.5.220/mkl/lib/intel64/ --with-blas-lib-dirs=$INSTALLDIR/intel/2011.5.220/mkl/lib/intel64/ CC=mpicc CXX=mpicxx F77=mpif77
-./hdf5/1.6.10.sh:./configure --prefix=$APPDIR --enable-parallel --enable-shared CC=mpicc
-./hdf5/1.6.10-gcc.sh:./configure --prefix=$APPDIR --enable-parallel --enable-shared CC=mpicc
-./hmmer/3.0.sh:./configure --prefix=$APPDIR --enable-sse --enable-mpi --enable-threads CC=icc CFLAGS=-O3 MPICC=mpicc

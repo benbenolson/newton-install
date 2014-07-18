@@ -14,7 +14,7 @@ module-whatis   "loads Blast+ into the working environment."
 
 # for Tcl script use only
 set     topdir       /data/apps/blast
-set     version      "2.2.24"
+set     version      "2.2.29-intel"
 
 prepend-path  PATH              $topdir/$version/bin
 prepend-path  MANPATH           $topdir/$version/man

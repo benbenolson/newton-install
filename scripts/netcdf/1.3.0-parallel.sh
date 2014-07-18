@@ -8,12 +8,10 @@
 #   None
 ################################################################################
 
-OPENMPIVERSION="1.4.3-intel-psm"
-OPENMPIDIR="$INSTALLDIR/openmpi/$OPENMPIVERSION"
+OPENMPIDIR="$INSTALLDIR/openmpi/1.4.3-intel-psm"
 
-module load openmpi/$OPENMPIVERSION
+module load openmpi/1.4.3-intel-psm
 
 CC="icc" FC="ifort" F77="ifort" FFLAGS="-assume no2underscores" ./configure --prefix=$APPDIR --with-mpi=$OPENMPIDIR --enable-fortran
 make
-make check
 make install

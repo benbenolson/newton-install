@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#/bin/bash -e
 
 ################################################################################
 # MAKEPATCH version 2.05 INSTALL SCRIPT
@@ -8,10 +8,9 @@
 #   None
 ################################################################################
 
-
 module load perl/5.16.2
 
 perl Makefile.PL
 make
 make install
-
+mkdir -p $APPDIR

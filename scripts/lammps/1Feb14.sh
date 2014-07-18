@@ -9,8 +9,6 @@
 #   
 ################################################################################
 
-
-module unload gcc/4.8.1 #To avoid an incompatibility issue with GCC 4.8.1
 module load fftw/2.1.5
 module load openmpi/1.4.3-intel-psm
 

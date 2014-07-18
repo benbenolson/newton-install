@@ -9,7 +9,6 @@
 ################################################################################
 
 
-./configure --prefix=$APPDIR-intel-psm --with-psm --with-sge=yes CC=icc CXX=icpc F77=ifort FC=ifort
+./configure --prefix=$APPDIR --with-psm --with-sge=yes CC=icc CXX=icpc F77=ifort FC=ifort
 make -j 8
-make check
 make install

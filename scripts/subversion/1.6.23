@@ -8,7 +8,7 @@ module-whatis   "loads subversion into the working environment."
 
 # for Tcl script use only
 set     topdir       /data/apps/subversion
-set     version      "1.6.17"
+set     version      "1.6.23"
 
 prepend-path PATH $topdir/$version/bin
 prepend-path LD_RUN_PATH $topdir/$version/lib
