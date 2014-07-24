@@ -9,7 +9,7 @@
 #   
 ################################################################################
 
-module load gcc/4.8.2
+#module load gcc/4.8.2
 module load fftw/2.1.5
 module load openmpi/1.4.3-intel-psm
 

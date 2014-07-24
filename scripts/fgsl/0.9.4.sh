@@ -8,13 +8,11 @@
 #   Deleted parameter "-p" after command "cp" in Makefile
 ################################################################################
 
-
 module load gcc/4.8.1
 module load gsl/1.15
 
 ./configure --prefix $APPDIR --gsl $INSTALLDIR/gsl/1.15 --bits 64
-cp newton_install/Makefile .
 make
 make test
 make install
-chmod -R 755 $APPDIR
+#chmod -R 755 $APPDIR

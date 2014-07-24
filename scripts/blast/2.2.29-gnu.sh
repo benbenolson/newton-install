@@ -15,10 +15,4 @@ module load boost/1.46.1
 cd c++
 yes yes | ./configure --prefix=$APPDIR CC=gcc CXX=g++
 make -j 8 
-make check
 make install
-mkdir -p $APPDIR
-cd $APPDIR
-wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/snapshot/2010-09-13/makeblastdb-linux64
-mv makeblastdb makeblastdb.orig
-mv makeblastdb-linux64 makeblastdb
