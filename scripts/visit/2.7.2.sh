@@ -25,3 +25,4 @@ make package
 tar xf visit2_7_2.linux-x86_64.tar.gz
 mkdir -p $APPDIR
 cp -arf visit2_7_2.linux-x86_64/* $APPDIR
+chmod -R o+rx $APPDIR
