@@ -41,16 +41,6 @@ print "Installing applications in:    '$installdir'\n";
 print "Using this directory to build: '$builddir'\n";
 print "Installing modules to:         '$moduledir'\n";
 
-if(@ARGV)
-{
-  print "Installing $ARGV[0]\n";
-  newton_install_one();
-}
-else
-{
-  print "Installing all applications.\n\n";
-  newton_install_all();
-}
 
 ###############################
 #     HELPER FUNCTIONS        #
@@ -115,6 +105,35 @@ sub get_deps
     push(@deps, "$1\/$2");
   }
   close FILE;
+  return @deps;
+}
+
+sub get_deps_recursive
+{
+  my ($name, $version) = split_name(shift);
+  my @deps;
+  my $total_deps = shift;
+  my $filename = "scripts/$name/$version.sh";
+
+  open (FILE, $filename) or die $!;
+  while(<FILE>)
+  {
+    next unless /^module load (\w+)\/(\S+)/;
+    print "Found dependency $1\/$2\n";
+    push(@deps, "$1\/$2");
+  }
+  close FILE;
+
+  print "name is now $name\n";
+  print "Deps is now: @deps\n";
+  print "Total_deps is now: $total_deps\n";
+  
+  foreach(@deps)
+  {
+    print "Pushing $_ to total_deps\n";
+    push(@$total_deps, $_);
+    get_deps_recursive($_, $total_deps)
+  }
   return @deps;
 }
 
@@ -203,18 +222,38 @@ sub build
 sub newton_install_all
 {
   my $topdir = cwd();
-  my ($inarow, @failedapps, %installed) = (1);
+  my $inarow = 0;
+  my (@failedapps, %installed);
   my @apps;
 
-  for (glob "scripts/*")
+  if(@ARGV)
   {
-    my @versions = glob "$_/*.sh";
-    for (@versions)
+    my $app = $ARGV[0];
+    my $recurse = 1;
+    my @total_deps;
+
+    print "Installing $app\n";
+    push(@apps, "$app");
+    get_deps_recursive($app, \@total_deps);
+    print "DEPENDENCIES: @total_deps\n";
+    foreach(@total_deps)
     {
-      /scripts\/(.+)\/(.+)\.sh/;
-      my ($name, $version) = ($1, $2);
-      s/\.sh$/\.tar\.gz/g;
-      push(@apps, "$name/$version") if -e $_;
+      push(@apps, $_);
+    }
+  }
+  else
+  {
+    print "Installing all applications.\n\n";
+    for (glob "scripts/*")
+    {
+      my @versions = glob "$_/*.sh";
+      for (@versions)
+      {
+        /scripts\/(.+)\/(.+)\.sh/;
+        my ($name, $version) = ($1, $2);
+        s/\.sh$/\.tar\.gz/g;
+        push(@apps, "$name/$version") if -e $_;
+      }
     }
   }
 
@@ -234,7 +273,7 @@ sub newton_install_all
     {
       $inarow++;
       push @apps, $app;
-      print "\n";
+      vprint "\n";
       next;
     }
 
@@ -246,7 +285,7 @@ sub newton_install_all
     }
     else
     {
-      $inarow = 1;
+      $inarow = 0;
       $installed{$app} = 1;
     }
   }
@@ -271,19 +310,8 @@ sub newton_install_all
   }
 }
 
+newton_install_all();
 
-############################
-#      INSTALL ONE         #
-############################
-sub newton_install_one
-{
-  # Set the globals defining the application that we're installing
-  my $app = $ARGV[0];
-  my ($name, $version) = split_name($app);
-
-  # Build the application and check for success
-  warn "Building $app $version failed\n\n" if build($name, $version);
-}
 
 __DATA__
 Usage:

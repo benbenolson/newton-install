@@ -1,8 +1,0 @@
-#%Module1.0#####################################################################
-
-set     topdir       /data/apps/lapack
-set     version      "3.5.0"
-module-whatis        "loads lapack version $version"
-
-conflict boost
-prepend-path  LD_LIBRARY_PATH   $topdir/$version/lib

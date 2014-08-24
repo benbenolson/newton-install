@@ -1,7 +1,0 @@
-#%Module1.0#####################################################################
-
-set     topdir       /data/apps/makepatch
-set     version      "2.05"
-module-whatis        "loads makepatch version $version"
-
-

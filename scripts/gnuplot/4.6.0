@@ -1,8 +1,0 @@
-#%Module1.0#####################################################################
-
-set     topdir       /data/apps/gnuplot
-set     version      "4.6.0"
-module-whatis        "loads Valgrind version $version"
-
-prepend-path  PATH              $topdir/$version/bin
-prepend-path  MANPATH           $topdir/$version/share/man/man1/
