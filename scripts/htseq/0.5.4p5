@@ -1,0 +1,14 @@
+#%Module1.0#####################################################################
+
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads HTSeq \n"
+}
+
+module-whatis   "loads HTSeq into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/htseq/0.5.4p5
+
+prepend-path  PYTHONPATH  $topdir/lib/python2.7/site-packages
+

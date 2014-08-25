@@ -1,0 +1,20 @@
+#%Module1.0#####################################################################
+##
+## numpy modulefile
+##
+## modulefiles/numpy. 
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads numpmy \n"
+}
+
+module-whatis   "loads numpy into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/numpy
+set     version      1.7.0-python3.2.1
+module  load         python/3.2.1
+conflict numpy
+
+prepend-path  PYTHONPATH  $topdir/$version/lib/python3.2/site-packages

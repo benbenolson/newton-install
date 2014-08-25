@@ -1,0 +1,19 @@
+#%Module1.0#####################################################################
+##
+## biopython modulefile
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads BioPython \n"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "loads BioPython into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/biopython
+set     version      "1.58"
+
+prepend-path  PYTHONPATH  $topdir/$version/lib64/python2.4/site-packages/
+module load scipy
+

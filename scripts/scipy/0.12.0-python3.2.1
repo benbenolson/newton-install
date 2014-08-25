@@ -1,0 +1,17 @@
+#%Module1.0#####################################################################
+##
+## scipy modulefile
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads scipy \n"
+}
+
+module-whatis   "loads scipy into the working environment."
+
+# for Tcl script use only
+set     topdir   /data/apps/scipy
+module  load     numpy/1.7.0-python3.2.1
+
+prepend-path  PYTHONPATH  $topdir/0.12.0/lib/python3.2/site-packages/
+

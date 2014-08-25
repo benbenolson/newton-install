@@ -1,0 +1,22 @@
+#%Module1.0#####################################################################
+##
+## flann modulefile
+##
+## modulefiles/flann. 
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads flann version $version \n"
+}
+
+module-whatis   "loads flann into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/flann
+set     version      "1.8.4"
+
+prepend-path  PATH              $topdir/$version/bin
+prepend-path  INCLUDE           $topdir/$version/include/flann
+prepend-path  FLANN_INCLUDE_DIR $topdir/$version/include/flann
+prepend-path  LD_LIBRARY_PATH   $topdir/$version/lib
+prepend-path  FLANN_LIBRARY     $topdir/$version/lib

@@ -1,0 +1,26 @@
+#%Module1.0#####################################################################
+##
+## pcl modulefile
+##
+## modulefiles/pcl. 
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads pcl version $version \n"
+}
+
+module-whatis   "loads PCL into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/pcl
+set     version      "1.7.1"
+
+prepend-path  PATH              $topdir/$version/bin
+prepend-path  LD_LIBRARY_PATH   $topdir/$version/lib
+prepend-path  INCLUDE           $topdir/$version/include/pcl-1.7
+
+module load boost/1.46.1
+module load flann/1.8.4
+module load cmake/2.8.8
+module load eigen/3.2.1
+module load vtk/5.8.0

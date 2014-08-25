@@ -1,0 +1,36 @@
+#%Module1.0#
+
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads Gaussian g09 version $version"
+}
+
+module-whatis   "loads Gaussian g09 into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/gaussian
+set     version      "g09"
+set     gr           $topdir/$version
+
+module load gaussian/gv509
+
+setenv		g09root		$topdir
+#setenv		GAUSS_SCRDIR	$topdir/$version
+
+prepend-path  GAUSS_EXEDIR  $gr/bsd:$gr/local:$gr/extras:$gr
+prepend-path  GAUSS_LEXEDIR $gr/linda-exe
+prepend-path  GAUSS_ARCHDIR $gr/arch
+prepend-path  GAUSS_BSDDIR  $gr/bsd
+prepend-path  GV_DIR        $topdir/gv509
+prepend-path  PATH          $gr/bsd:$gr/local:$gr/extras:$gr
+prepend-path  PERL5LIB      $gr/bsd
+prepend-path  MANPATH       $gr/bsd
+prepend-path  LD_LIBRARY64_PATH $gr/bsd:$gr/local:$gr/extras:$gr:$topdir/gv509/lib
+append-path   LD_LIBRARY_PATH $gr/bsd:$gr/local:$gr/extras:$gr:$topdir/gv509/lib
+
+setenv        G09BASIS      $gr/basis
+setenv        _DSM_BARRIER  SHM
+setenv        _RLD_ARGS     "-log /dev/null"
+
+set-alias     gv            $topdir/gv509/gview.csh
+

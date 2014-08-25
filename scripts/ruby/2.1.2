@@ -1,0 +1,17 @@
+#%Module1.0#####################################################################
+
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads Ruby \n"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "loads Ruby into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/ruby
+set     version      "2.1.2"
+
+prepend-path  PATH              $topdir/$version/bin
+#prepend-path  RUBYLIB           $topdir/$version/lib
+

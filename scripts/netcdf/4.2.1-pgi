@@ -1,0 +1,19 @@
+#%Module1.0#####################################################################
+
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads netcdf \n"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "loads netcdf into the working environment."
+
+set     topdir       /data/apps/netcdf
+set version 4.2.1-pgi
+
+module load hdf5/1.8.9-gcc-serial
+
+prepend-path  PATH              $topdir/$version/bin
+prepend-path  LD_RUN_PATH   $topdir/$version/lib
+prepend-path  LD_LIBRARY_PATH   $topdir/$version/lib
+prepend-path  INCLUDE  $topdir/$version/include

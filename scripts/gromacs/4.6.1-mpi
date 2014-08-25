@@ -1,0 +1,22 @@
+#%Module1.0#####################################################################
+##
+## GROMACS modulefile
+##
+
+set version 4.6.1
+
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads the threaded version of GROMACS\n"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "loads GROMACS into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/gromacs/$version/mpi
+
+prepend-path  PATH              $topdir/bin
+prepend-path  LD_LIBRARY_PATH   $topdir/lib
+prepend-path  MANPATH           $topdir/share/man
+

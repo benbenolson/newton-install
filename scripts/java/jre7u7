@@ -1,0 +1,8 @@
+#%Module1.0#####################################################################
+
+set     topdir       /data/apps/java
+set     version      "1.7u7"
+module-whatis        "loads Java version $version"
+
+prepend-path  PATH              $topdir/$version/bin
+

@@ -1,0 +1,20 @@
+#%Module1.0#####################################################################
+##
+## FGSL modulefile
+##
+## modulefiles/fgsl/0.9.4
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads FGSL \n"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "loads GSL into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/fgsl
+set version 0.9.4
+
+prepend-path  LD_LIBRARY_PATH   $topdir/$version/lib
+

@@ -1,0 +1,17 @@
+#%Module1.0#####################################################################
+##
+## Amber modulefile
+##
+## modulefiles/Amber. 
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads Amber\n"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "loads Amber into the working environment."
+
+set topdir /data/apps/grace/5.99
+prepend-path  PATH              $topdir/bin
+prepend-path  MANPATH		$topdir/doc

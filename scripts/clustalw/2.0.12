@@ -1,0 +1,21 @@
+#%Module1.0#####################################################################
+##
+## clustalw modulefile
+##
+## modulefiles/clustalw. 
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads clustalw version 2.0.12 \n"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "loads clustalw into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/clustalw
+set     version      "2.0.12"
+
+prepend-path  PATH              $topdir/$version/bin
+prepend-path  MANPATH           $topdir/$version/man
+prepend-path  LD_LIBRARY_PATH   $topdir/$version/lib

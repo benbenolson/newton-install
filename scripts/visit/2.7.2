@@ -1,0 +1,15 @@
+#%Module1.0#####################################################################
+##
+## visit modulefile
+##
+## modulefiles/visit. 
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads visit version 2.7.2\n"
+}
+
+module-whatis   "loads visit into the working environment."
+
+prepend-path  PATH  /data/apps/visit/2.7.2/bin
+prepend-path LD_RUN_PATH /data/apps/visit/2.7.2/2.7.2/linux-x86_64/lib

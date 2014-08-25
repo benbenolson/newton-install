@@ -1,0 +1,19 @@
+#%Module1.0#####################################################################
+##
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads netcdf-parallel"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis	"loads parallel-netcdf into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/netcdf
+set     version      "1.3.0-parallel"
+
+prepend-path  PATH              $topdir/$version/bin
+prepend-path  LD_LIBRARY_PATH   $topdir/$version/lib
+prepend-path  LD_RUN_PATH       $topdir/$version/lib
+

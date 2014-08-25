@@ -1,0 +1,18 @@
+#%Module1.0#####################################################################
+##
+## muscle-3.7 modulefile
+##
+## modulefiles/muscle-3.7. 
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads muscle version 3.7\n"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "loads muscle 3.7 into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/muscle/3.7
+
+prepend-path  PATH              $topdir/bin

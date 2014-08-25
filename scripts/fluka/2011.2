@@ -1,0 +1,20 @@
+#%Module1.0#####################################################################
+##
+## Fluka modulefile
+##
+## modulefiles/fluka/2010.2pre. 
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads Fluka\n"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "loads Fluka into the working environment."
+
+set version 2011.2
+set topdir /data/apps/fluka/$version
+
+setenv FLUPRO          $topdir
+prepend-path  PATH     $topdir
+prepend-path  PATH     $topdir/flutil

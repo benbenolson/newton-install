@@ -1,0 +1,17 @@
+#%Module1.0#
+
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads Maplei version $version"
+}
+
+module-whatis   "loads Maple into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/maple
+set     version      "18"
+
+prepend-path  PATH              $topdir/$version/bin
+prepend-path  MANPATH           $topdir/$version/man
+prepend-path  LD_LIBRARY_PATH   $topdir/$version/lib
+

@@ -1,0 +1,10 @@
+#%Module1.0#####################################################################
+
+set     topdir       /data/apps/valgrind
+set     version      "3.8.0"
+module-whatis        "loads Valgrind version $version"
+
+prepend-path  PATH              $topdir/$version/bin
+prepend-path  LD_RUN_PATH       $topdir/$version/lib/valgrind
+prepend-path  LD_LIBRARY_PATH   $topdir/$version/lib/valgrind
+

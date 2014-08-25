@@ -1,0 +1,20 @@
+#%Module1.0#####################################################################
+##
+## mpfr modulefile
+##
+## modulefiles/mpfr. 
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads mpc version $version\n"
+}
+
+module-whatis   "loads mpfr into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/mpc
+set     version      "1.0.1"
+
+prepend-path LD_RUN_PATH $topdir/$version/lib
+prepend-path LD_LIBRARY_PATH $topdir/$version/lib
+

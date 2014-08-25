@@ -1,0 +1,19 @@
+#%Module1.0#####################################################################
+##
+## mrbayes-3.2.2 modulefile
+##
+## modulefiles/mrbayes-3.2.2. 
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads mrbayes version 3.2.2\n"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "loads mrbayes 3.2.2 into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/mrbayes/3.2.2
+
+prepend-path  PATH              $topdir
+prepend-path  LD_LIBRARY_PATH   $topdir

@@ -1,0 +1,17 @@
+#%Module1.0#####################################################################
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads subversion version $version\n"
+}
+
+module-whatis   "loads subversion into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/subversion
+set     version      "1.6.23"
+
+prepend-path PATH $topdir/$version/bin
+prepend-path LD_RUN_PATH $topdir/$version/lib
+prepend-path MANPATH $topdir/$version/share/man
+
+

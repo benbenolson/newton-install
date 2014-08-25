@@ -1,0 +1,19 @@
+#%Module1.0#####################################################################
+
+set version 1.1.27
+
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads the threaded version of Wine\n"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "loads Wine into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/wine/$version
+
+prepend-path  PATH              $topdir/bin
+prepend-path  LD_LIBRARY_PATH   $topdir/lib
+prepend-path  MANPATH           $topdir/share/man
+

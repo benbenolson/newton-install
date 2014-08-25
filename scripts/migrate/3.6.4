@@ -1,0 +1,22 @@
+#%Module1.0#####################################################################
+##
+## Migrate modulefile
+##
+## modulefiles/hmmer. 
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads Migrate version $version \n"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "loads Migrate into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/migrate
+set     version      "3.6.4"
+
+prereq openmpi
+prepend-path  PATH              $topdir/$version
+
+

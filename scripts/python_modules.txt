@@ -1,0 +1,6 @@
+biomformat
+lxml
+matplotlib
+numpy
+pycogent
+qiime

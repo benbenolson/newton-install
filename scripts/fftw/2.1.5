@@ -1,0 +1,21 @@
+#%Module1.0#####################################################################
+##
+## fftw modulefile
+##
+## modulefiles/fftw. 
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads fftw version 2.1.5\n"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "loads fftw into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/fftw
+set     version      "2.1.5"
+
+prepend-path  PATH              $topdir/$version/bin
+prepend-path  MANPATH           $topdir/$version/share/man
+prepend-path  LD_LIBRARY_PATH   $topdir/$version/lib

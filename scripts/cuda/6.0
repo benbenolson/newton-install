@@ -1,0 +1,10 @@
+#%Module1.0#####################################################################
+
+module-whatis        "loads CUDA version 6.0"
+
+set topdir "/usr/local/cuda-6.0"
+
+prepend-path  PATH              $topdir/bin
+prepend-path  LD_LIBRARY_PATH   $topdir/lib
+
+setenv CUDADIR $topdir
