@@ -291,22 +291,28 @@ sub newton_install_all
   }
 
   # Print out failed applications and unmet dependencies
-  print "FAILED APPS:\n";
-  print "$_\n" for @failedapps;
-
-  print "UNRESOLVABLE DEPENDENCIES:\n";
-  foreach(@apps)
+  if(@failedapps)
   {
-    my $app = $_;
-    print "  * $_ depends on: \n";
-    my @deps = get_deps($app);
-    foreach(@deps)
+    print "FAILED APPS:\n";
+    print "$_\n" for @failedapps;
+  }
+
+  if(@apps)
+  {
+    print "UNRESOLVABLE DEPENDENCIES:\n";
+    foreach(@apps)
     {
-      print "      $_ ";
-      print "(installed) " if $installed{$_};
+      my $app = $_;
+      print "  * $_ depends on: \n";
+      my @deps = get_deps($app);
+      foreach(@deps)
+      {
+        print "      $_ ";
+        print "(installed) " if $installed{$_};
+        print "\n";
+      }
       print "\n";
     }
-    print "\n";
   }
 }
 
