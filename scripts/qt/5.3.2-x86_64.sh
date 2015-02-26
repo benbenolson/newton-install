@@ -1,13 +1,13 @@
 #!/bin/bash -e
 
 ################################################################################
-# BINUTILS version 2.22 INSTALL SCRIPT
+# QT version 4.3.1 INSTALL SCRIPT
 #   for use on UTK Newton only
 #
 # Files changed in order to compile:
 #   None
 ################################################################################
 
-CC=gcc ./configure --prefix=$APPDIR
-make
+yes yes | ./configure --prefix=$APPDIR -qt-xcb -opensource -platform linux-g++-64
+make -j8
 make install

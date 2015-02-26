@@ -1,0 +1,24 @@
+#%Module1.0#####################################################################
+##
+## NWChem modulefile
+##
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads NWChem \n"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "loads NWChem into the working environment."
+
+# for Tcl script use only
+set     version      6.3
+set     topdir       /data/apps/nwchem
+
+module load openmpi/1.4.3-intel-psm
+
+prepend-path  PATH              $topdir/$version/bin
+system "ln -fs $topdir/$version/data/default.nwchemrc ~/.nwchemrc"
+
+
+

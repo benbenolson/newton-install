@@ -1,0 +1,20 @@
+#%Module1.0#####################################################################
+##
+## vim modulefile
+##
+## modulefiles/vim/7.4
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads vim version $version\n"
+}
+
+module-whatis   "loads ViM into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/vim
+set     version      "7.4"
+
+prepend-path PATH $topdir/$version/bin
+prepend-path MANPATH $topdir/$version/share/man
+

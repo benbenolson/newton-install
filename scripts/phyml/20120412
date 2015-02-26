@@ -1,0 +1,17 @@
+#%Module1.0#####################################################################
+##
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads phyml"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis	"loads phyml into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/phyml
+set     version      "20120412"
+
+prepend-path  PATH              $topdir/$version/bin
+

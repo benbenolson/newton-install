@@ -1,13 +1,12 @@
 #!/bin/bash -e
 
 ################################################################################
-# BINUTILS version 2.22 INSTALL SCRIPT
+# QIIME version 1.80 INSTALL SCRIPT
 #   for use on UTK Newton only
 #
 # Files changed in order to compile:
 #   None
 ################################################################################
 
-CC=gcc ./configure --prefix=$APPDIR
-make
-make install
+cd qiime-deploy
+python qiime-deploy.py $APPDIR -f ../qiime-deploy-conf/qiime-1.8.0/qiime.conf --force-remove-failed-dirs || true

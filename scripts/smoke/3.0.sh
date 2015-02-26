@@ -1,13 +1,13 @@
 #!/bin/bash -e
 
 ################################################################################
-# BINUTILS version 2.22 INSTALL SCRIPT
+# SMOKE version 3.0 INSTALL SCRIPT
 #   for use on UTK Newton only
 #
 # Files changed in order to compile:
 #   None
 ################################################################################
 
-CC=gcc ./configure --prefix=$APPDIR
-make
-make install
+export SMK_HOME=$APPDIR
+mkdir -p $APPDIR
+csh smoke_install.csh

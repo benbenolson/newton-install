@@ -1,13 +1,16 @@
 #!/bin/bash -e
 
 ################################################################################
-# BINUTILS version 2.22 INSTALL SCRIPT
+# MUMmer version 3.23 INSTALL SCRIPT
 #   for use on UTK Newton only
 #
 # Files changed in order to compile:
 #   None
 ################################################################################
 
-CC=gcc ./configure --prefix=$APPDIR
-make
+mkdir -p $APPDIR
+cp -ar * $APPDIR
+cd $APPDIR
+
+make check
 make install

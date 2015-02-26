@@ -1,0 +1,16 @@
+#%Module1.0#####################################################################
+##
+## gpt modulefile
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads globus\n"
+}
+
+module-whatis   "loads globus into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/globus
+set     version      "5.2.2"
+
+prepend-path PATH    $topdir/$version/bin

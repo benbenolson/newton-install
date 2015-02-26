@@ -13,7 +13,7 @@ module-whatis   "loads Python into the working environment."
 set     topdir       /data/apps/perl
 set     version      "5.16.2"
 
-prepend-path PATH $topdir/$version/bin
+prepend-path PATH $topdir/$version/bin:~/perl5lib/bin
 prepend-path MANPATH $topdir/$version/man
 prepend-path PERL5LIB $topdir/$version/lib/$version
 prepend-path PERL5LIB $topdir/$version/lib/site_perl/$version/x86_64-linux
@@ -23,5 +23,5 @@ prepend-path PERL_LOCAL_LIB_ROOT $topdir/$version
 prepend-path PERL_MB_OPT --install_base $topdir/$version
 prepend-path PERL_MM_OPT INSTALL_BASE=$topdir/$version
 prepend-path PERL5LIB $topdir/$version/lib/perl5
-
+prepend-path PERL5LIB ~/perl5lib/lib/perl5
 

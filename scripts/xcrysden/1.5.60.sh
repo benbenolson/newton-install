@@ -1,13 +1,16 @@
-#!/bin/bash -e
+#!/bin/bash
 
 ################################################################################
-# BINUTILS version 2.22 INSTALL SCRIPT
+# XCRYSDEN version 1.5.60 INSTALL SCRIPT
 #   for use on UTK Newton only
 #
 # Files changed in order to compile:
-#   None
+#   Added Make.newton to the ./system directory
 ################################################################################
 
-CC=gcc ./configure --prefix=$APPDIR
-make
-make install
+module load tcltk/8.6.2
+module load fftw/3.2.2
+
+cp ./system/Make.newton ./Make.sys
+make -j8 all
+prefix="$APPDIR" make install

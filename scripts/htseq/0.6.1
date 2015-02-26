@@ -9,6 +9,7 @@ module-whatis   "loads HTSeq into the working environment."
 
 # for Tcl script use only
 set     topdir       /data/apps/htseq
+set     version      0.6.1
 
-prepend-path  PYTHONPATH  $topdir/0.6.1/lib/python2.7/site-packages
-
+prepend-path  PYTHONPATH  $topdir/$version/lib/python2.7/site-packages
+prepend-path  PATH        $topdir/$version/bin

@@ -1,13 +1,16 @@
 #!/bin/bash -e
 
 ################################################################################
-# BINUTILS version 2.22 INSTALL SCRIPT
+# SUBVERSION version 1.8.10 INSTALL SCRIPT
 #   for use on UTK Newton only
 #
 # Files changed in order to compile:
-#   None
+#   Added sqlite-amalgamation
 ################################################################################
 
-CC=gcc ./configure --prefix=$APPDIR
-make
+module load neon/0.29.0
+
+./configure --prefix=$APPDIR --with-ssl --with-neon=$NEON_INSTALLDIR
+make -j 4
+make check
 make install

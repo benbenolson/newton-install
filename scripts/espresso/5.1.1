@@ -1,0 +1,15 @@
+#%Module1.0#####################################################################
+
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads Quantum Espresso"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis	"loads Quantum Espresso into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/espresso
+set     version      "5.1.1"
+
+prepend-path  PATH              $topdir/$version

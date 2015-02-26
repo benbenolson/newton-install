@@ -1,0 +1,19 @@
+#%Module1.0#####################################################################
+##
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads mpich"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis	"loads mpich into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/mpich
+set     version      "3.1.3"
+
+prepend-path  PATH              $topdir/$version/bin
+prepend-path  LD_LIBRARY_PATH   $topdir/$version/lib
+prepend-path  LD_RUN_PATH       $topdir/$version/lib
+

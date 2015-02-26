@@ -1,0 +1,15 @@
+#%Module1.0#####################################################################
+##
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads smoke"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis	"loads smoke into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/smoke
+set     version      "3.0"
+

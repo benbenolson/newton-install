@@ -1,0 +1,21 @@
+#%Module1.0#####################################################################
+##
+## qt-4.3.1 modulefile
+##
+## modulefiles/qt-4.3.1. 
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads qt-4.3.1 version \n"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "loads qt-4.3.1 into the working environment."
+
+conflict qt
+# for Tcl script use only
+set     topdir       /data/apps/qt-4.3.1
+
+prepend-path  PATH              $topdir/bin
+prepend-path  MANPATH           $topdir/man
+prepend-path  LD_LIBRARY_PATH   $topdir/lib

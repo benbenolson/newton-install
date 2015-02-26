@@ -1,36 +1,16 @@
 ***********NEED TO BE DONE*************
-mvapich2
-NAMD
-ncftp
-ncurses
-neatx
-nwchem
-PhyML_3.0
 PIL
 proj4
-qt-4.3.1
-qt-4.3.1-i686
 RAxML
-root
 rubygems
-SAS
-sbml
-schrodinger
-serf
 sge
 signalp-3.0
-smoke
-spindle
 spss
 tbb
-tcl
-tk
 TMHMM-2.0c
 trilinos
 udunits
 vasp
-vim
-vmd
 wxPython
 
 *******FINISHED**********
@@ -103,6 +83,19 @@ mercurial
 mrbayes
 mpi4py
 muscle
+octave
+mummer
+vim
+ncurses
+smoke
+root
+mvapich2
+serf
+nwchem
+ncftp
+PhyML_3.0
+tcl
+tk
 
 ************COMPILE ISSUES QUEUE***********
 perlmodules
@@ -120,15 +113,19 @@ comsol
 eclipse
 grid
 mathematica
+SAS
+grass (depends on proj4, tiff, tcltk, fftw, wxpython)
+schrodinger
 
 *************IN PROGRESS (BY BEN)***********
-grass (depends on proj4, tiff, tcltk, fftw, wxpython)
 Mothur
 MOVES
-MUMmer3.21
-octave
+vmd
+namd
 
 *************NOT NECESSARY*******************
 mtt
 idl
 mcip
+spindle
+neatx

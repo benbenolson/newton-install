@@ -1,13 +1,15 @@
 #!/bin/bash -e
 
 ################################################################################
-# BINUTILS version 2.22 INSTALL SCRIPT
+# Quantum Espresso version 5.1.1 INSTALL SCRIPT
 #   for use on UTK Newton only
 #
 # Files changed in order to compile:
 #   None
 ################################################################################
 
-CC=gcc ./configure --prefix=$APPDIR
-make
+module load openmpi/1.4.3-intel-psm
+
+./configure --prefix=$APPDIR
+make all
 make install

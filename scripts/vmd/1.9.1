@@ -1,0 +1,20 @@
+#%Module1.0#####################################################################
+##
+## vmd modulefile
+##
+## modulefiles/vmd. 
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads vmd version 1.9.1 \n"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "loads vmd into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/vmd
+set     version      "1.9.1"
+
+prepend-path  PATH              $topdir/$version
+prepend-path  LD_LIBRARY_PATH   $topdir/$version

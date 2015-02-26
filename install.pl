@@ -119,18 +119,12 @@ sub get_deps_recursive
   while(<FILE>)
   {
     next unless /^module load (\w+)\/(\S+)/;
-    print "Found dependency $1\/$2\n";
     push(@deps, "$1\/$2");
   }
   close FILE;
-
-  print "name is now $name\n";
-  print "Deps is now: @deps\n";
-  print "Total_deps is now: $total_deps\n";
   
   foreach(@deps)
   {
-    print "Pushing $_ to total_deps\n";
     push(@$total_deps, $_);
     get_deps_recursive($_, $total_deps)
   }
@@ -235,7 +229,6 @@ sub newton_install_all
     print "Installing $app\n";
     push(@apps, "$app");
     get_deps_recursive($app, \@total_deps);
-    print "DEPENDENCIES: @total_deps\n";
     foreach(@total_deps)
     {
       push(@apps, $_);
@@ -278,6 +271,7 @@ sub newton_install_all
     }
 
     # Checks to see if the build succeeded
+    print "Building $name $version\n";
     if(build($name, $version) != 0)
     {
       print "Building $app failed.\n\n";

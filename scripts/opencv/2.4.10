@@ -1,0 +1,19 @@
+#%Module1.0#####################################################################
+##
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads opencv"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis	"loads opencv into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/opencv
+set     version      "2.4.10"
+
+prepend-path  PATH              $topdir/$version/bin
+prepend-path  LD_LIBRARY_PATH   $topdir/$version/lib
+prepend-path  LD_RUN_PATH       $topdir/$version/lib
+prepend-path  PYTHONPATH        $topdir/$version/lib/python2.7/site-packages

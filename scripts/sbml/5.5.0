@@ -1,0 +1,18 @@
+#%Module1.0#####################################################################
+##
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads sbml"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis	"loads sbml into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/sbml
+set     version      "5.5.0"
+
+prepend-path  LD_LIBRARY_PATH   $topdir/$version/lib
+prepend-path  LD_RUN_PATH       $topdir/$version/lib
+prepend-path  INCLUDE           $topdir/$version/include

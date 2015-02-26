@@ -1,0 +1,19 @@
+#%Module1.0#####################################################################
+##
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads xcrysden"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis	"loads xcrysden into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/xcrysden
+set     version      "1.5.60"
+
+prepend-path  PATH              $topdir/$version/bin
+prepend-path  LD_LIBRARY_PATH   $topdir/$version/lib
+prepend-path  LD_RUN_PATH       $topdir/$version/lib
+prepend-path  LD_LIBRARY_PATH   /data/apps/tcltk/8.6.2/lib

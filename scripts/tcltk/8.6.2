@@ -1,0 +1,22 @@
+#%Module1.0#####################################################################
+##
+## tcltk modulefile
+##
+## modulefiles/tcl/8.6.2
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads tcltk version $version\n"
+}
+
+module-whatis   "loads tcltk into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/tcltk
+set     version      "8.6.2"
+
+prepend-path PATH $topdir/$version/bin
+prepend-path MANPATH $topdir/$version/man
+prepend-path INCLUDE $topdir/$version/include
+prepend-path LD_LIBRARY_PATH $topdir/$version/lib
+

@@ -1,0 +1,19 @@
+#%Module1.0#####################################################################
+##
+## python modulefile
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads Python version $version\n"
+}
+
+module-whatis   "loads Python into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/python
+set     version      "2.6.9"
+conflict python
+
+prepend-path PATH $topdir/$version/bin
+prepend-path INCLUDE $topdir/$version/include/python2.6
+

@@ -1,0 +1,20 @@
+#%Module1.0#####################################################################
+##
+## MUMmer3.23 modulefile
+##
+## modulefiles/MUMmer3.23. 
+##
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tThis module loads MUMmer 3.23 \n"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "loads MUMmer 3.23 into the working environment."
+
+# for Tcl script use only
+set     topdir       /data/apps/mummer/3.23
+
+prepend-path  PATH              $topdir
+prepend-path  PATH              $topdir/aux_bin
+
